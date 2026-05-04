@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crowned — Natural Hair Studio KC</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Nunito+Sans:wght@300;400;500;600&family=Abril+Fatface&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum:     #3B1F3A;
+    --deep:     #1A0A19;
+    --gold:     #C9A84C;
+    --gold-lt:  #E8CC8A;
+    --blush:    #E8C4C0;
+    --rose:     #C4706A;
+    --cream:    #FAF6F0;
+    --linen:    #F0E8DC;
+    --charcoal: #2A2A2A;
+    --mist:     #7A6A78;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ─── WATERMARKS ─── */
+  .sample-watermark {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-35deg);
+    font-family: 'Abril Fatface', serif;
+    font-size: clamp(8rem, 22vw, 16rem);
+    color: rgba(158, 43, 26, 0.13);
+    pointer-events: none;
+    z-index: 9998;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .sample-repeat-text {
+    position: fixed;
+    top: 0; left: 0;
+    width: 200%; height: 200%;
+    pointer-events: none;
+    z-index: 9997;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    transform: rotate(-35deg) translate(-20%, -20%);
+    opacity: 0.04;
+    user-select: none;
+  }
+
+  .sample-repeat-text span {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #9E2B1A;
+    white-space: nowrap;
+    padding: 30px 0;
+  }
+
+  .cmb-bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #1A0A19;
+    color: #FAF6F0;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 9px 20px;
+    z-index: 9999;
+    border-top: 2px solid #C0392B;
+  }
+
+  .cmb-badge {
+    background: #C0392B;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .cmb-bottom-bar a { color: #C9A84C; text-decoration: none; }
+  .cmb-bottom-bar a:hover { text-decoration: underline; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 60px;
+    background: rgba(26, 10, 25, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  .nav-tagline {
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(250,246,240,0.4);
+    display: block;
+    margin-top: -2px;
+    text-align: center;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: rgba(250,246,240,0.7);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-book {
+    background: transparent !important;
+    border: 1px solid var(--gold) !important;
+    color: var(--gold) !important;
+    padding: 10px 24px !important;
+    border-radius: 0 !important;
+    transition: background 0.2s, color 0.2s !important;
+  }
+
+  .nav-book:hover {
+    background: var(--gold) !important;
+    color: var(--deep) !important;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--deep);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 70px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    top: 0; right: -60px;
+    width: 120px;
+    height: 100%;
+    background: var(--deep);
+    clip-path: polygon(0 0, 40% 0, 100% 100%, 0 100%);
+    z-index: 3;
+  }
+
+  .hero-crown {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-crown::before {
+    content: '♛';
+    font-size: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(3.8rem, 6vw, 6rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(1rem, 1.5vw, 1.4rem);
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(250,246,240,0.45);
+    margin-bottom: 36px;
+    letter-spacing: 1px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(250,246,240,0.65);
+    line-height: 1.85;
+    max-width: 380px;
+    margin-bottom: 48px;
+  }
+
+  .hero-btns { display: flex; gap: 14px; }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--deep);
+    padding: 15px 36px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); }
+
+  .btn-outline-gold {
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    padding: 15px 36px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  .btn-outline-gold:hover { border-color: var(--gold); background: rgba(201,168,76,0.07); }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .hstat-num {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .hstat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(250,246,240,0.4);
+    margin-top: 4px;
+  }
+
+  /* Hero right — photo collage */
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .hero-photo-tag {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26,10,25,0.88);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    white-space: nowrap;
+    backdrop-filter: blur(8px);
+  }
+
+  /* ─── GOLD TICKER ─── */
+  .gold-ticker {
+    background: var(--gold);
+    overflow: hidden;
+    padding: 14px 0;
+    white-space: nowrap;
+  }
+
+  .gold-ticker-track {
+    display: inline-block;
+    animation: goldroll 30s linear infinite;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--deep);
+  }
+
+  .gold-ticker-track span { margin: 0 28px; }
+  .gold-ticker-track .sep { opacity: 0.4; }
+
+  @keyframes goldroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ─── SHARED ─── */
+  section { padding: 100px 80px; }
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .section-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--deep);
+    margin-bottom: 20px;
+  }
+
+  .section-title em { font-style: italic; color: var(--rose); }
+  .section-title .gold { color: var(--gold); }
+
+  /* ─── ABOUT ─── */
+  .about {
+    background: var(--plum);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about .section-title { color: var(--cream); }
+  .about .section-title em { color: var(--gold-lt); }
+
+  .about-text p {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(250,246,240,0.7);
+    line-height: 1.9;
+    margin-bottom: 18px;
+  }
+
+  .about-sig {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 32px;
+    font-style: italic;
+    color: var(--gold);
+    margin-top: 32px;
+    display: block;
+  }
+
+  .about-sig-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(250,246,240,0.4);
+    margin-top: 4px;
+  }
+
+  .about-imgs {
+    position: relative;
+    height: 560px;
+  }
+
+  .about-img-main {
+    position: absolute;
+    top: 0; right: 0;
+    width: 78%;
+    height: 82%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 2px;
+  }
+
+  .about-img-sm {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 50%;
+    height: 48%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 2px;
+    border: 5px solid var(--plum);
+  }
+
+  .about-award {
+    position: absolute;
+    top: 28px; left: -12px;
+    background: var(--gold);
+    color: var(--deep);
+    padding: 16px 18px;
+    text-align: center;
+    border-radius: 1px;
+    z-index: 2;
+  }
+
+  .about-award .aw-num {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .about-award .aw-txt {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* ─── SERVICES ─── */
+  .services { background: var(--cream); }
+
+  .services-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 60px;
+  }
+
+  .services-header p {
+    max-width: 340px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--mist);
+    line-height: 1.75;
+    text-align: right;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--linen);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover { background: white; }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .service-card p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--mist);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .service-price {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--plum);
+  }
+
+  .service-price span {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--mist);
+  }
+
+  /* ─── GALLERY ─── */
+  .gallery {
+    background: var(--deep);
+    padding: 80px;
+  }
+
+  .gallery-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+
+  .gallery-header .section-title { color: var(--cream); }
+  .gallery-header .section-title em { color: var(--gold); }
+  .gallery-header .section-eyebrow { color: var(--gold-lt); }
+  .gallery-header .section-eyebrow::after { background: var(--gold-lt); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 280px 280px;
+    gap: 8px;
+  }
+
+  .gallery-grid .g-tall { grid-row: span 2; }
+  .gallery-grid .g-wide { grid-column: span 2; }
+
+  .g-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .g-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.5s;
+  }
+
+  .g-item:hover img { transform: scale(1.06); }
+
+  .g-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,10,25,0);
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    transition: background 0.3s;
+  }
+
+  .g-item:hover .g-overlay { background: rgba(26,10,25,0.55); }
+
+  .g-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .g-item:hover .g-label { opacity: 1; transform: translateY(0); }
+
+  /* ─── BOOKING / PROCESS ─── */
+  .process {
+    background: var(--linen);
+    text-align: center;
+  }
+
+  .process > p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--mist);
+    max-width: 480px;
+    margin: 0 auto 64px;
+    line-height: 1.75;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 32px;
+    left: 12.5%;
+    width: 75%;
+    height: 1px;
+    background: rgba(59,31,58,0.12);
+  }
+
+  .step { padding: 0 24px; position: relative; }
+
+  .step-num {
+    width: 64px; height: 64px;
+    background: var(--plum);
+    color: var(--gold);
+    font-family: 'Bodoni Moda', serif;
+    font-size: 24px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    border: 3px solid var(--cream);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step h3 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: 10px;
+  }
+
+  .step p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--mist);
+    line-height: 1.6;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--plum); }
+
+  .testimonials .section-title { color: var(--cream); }
+  .testimonials .section-eyebrow { color: var(--gold-lt); }
+  .testimonials .section-eyebrow::after { background: var(--gold-lt); }
+
+  .test-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .test-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 2px;
+    padding: 36px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .test-card:hover {
+    border-color: rgba(201,168,76,0.35);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .test-card.featured {
+    background: rgba(201,168,76,0.1);
+    border-color: rgba(201,168,76,0.3);
+    grid-column: span 2;
+  }
+
+  .test-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 18px; }
+
+  .test-card blockquote {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(250,246,240,0.9);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .test-card.featured blockquote { font-size: 22px; }
+
+  .reviewer-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .r-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--deep);
+    flex-shrink: 0;
+    background: var(--gold);
+  }
+
+  .r-name { font-size: 13px; font-weight: 600; color: var(--cream); }
+  .r-sub { font-size: 11px; font-weight: 300; color: rgba(250,246,240,0.45); margin-top: 2px; }
+
+  .test-service-tag {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,168,76,0.12);
+    padding: 5px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  /* ─── POLICIES / INFO ─── */
+  .policies {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .policy-left {
+    padding: 80px;
+    border-right: 1px solid rgba(59,31,58,0.08);
+  }
+
+  .policy-right { padding: 80px; }
+
+  .policy-item {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(59,31,58,0.07);
+  }
+
+  .policy-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .policy-icon {
+    width: 44px; height: 44px;
+    background: var(--plum);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .policy-item h4 {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: 5px;
+  }
+
+  .policy-item p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--mist);
+    line-height: 1.65;
+  }
+
+  /* ─── BOOK ─── */
+  .book-section {
+    background: var(--deep);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .book-left {
+    padding: 100px 72px;
+    background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80');
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+  }
+
+  .book-left::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(26,10,25,0.78);
+  }
+
+  .book-left-content { position: relative; z-index: 2; }
+
+  .book-left .section-eyebrow { color: var(--gold-lt); }
+  .book-left .section-eyebrow::after { background: var(--gold-lt); }
+  .book-left .section-title { color: var(--cream); font-size: 3rem; }
+  .book-left .section-title em { color: var(--gold); }
+
+  .book-left p {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(250,246,240,0.65);
+    line-height: 1.8;
+    margin: 20px 0 36px;
+  }
+
+  .contact-rows { margin-top: 40px; }
+
+  .c-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(250,246,240,0.75);
+  }
+
+  .c-icon-circle {
+    width: 38px; height: 38px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .book-right {
+    background: var(--linen);
+    padding: 100px 72px;
+  }
+
+  .book-right .section-eyebrow { color: var(--rose); }
+  .book-right .section-eyebrow::after { background: var(--rose); }
+
+  .fg { margin-bottom: 20px; }
+
+  .fg label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 7px;
+  }
+
+  .fg input, .fg select, .fg textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid rgba(59,31,58,0.18);
+    border-radius: 1px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    color: var(--charcoal);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .fg input:focus, .fg select:focus, .fg textarea:focus {
+    border-color: var(--plum);
+  }
+
+  .fg textarea { height: 100px; resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep);
+    padding: 70px 80px 85px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .foot-logo {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .foot-tagline {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(250,246,240,0.3);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  footer > div > p {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(250,246,240,0.38);
+    line-height: 1.75;
+  }
+
+  .foot-socials { display: flex; gap: 10px; margin-top: 22px; }
+
+  .fsoc {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(201,168,76,0.5);
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .fsoc:hover { border-color: var(--gold); color: var(--gold); }
+
+  .fcol h4 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .fcol ul { list-style: none; }
+  .fcol ul li { margin-bottom: 10px; }
+  .fcol ul li a {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(250,246,240,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .fcol ul li a:hover { color: var(--gold); }
+
+  .foot-base {
+    background: #0E0610;
+    padding: 16px 80px 65px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: rgba(250,246,240,0.22);
+    border-top: 1px solid rgba(201,168,76,0.06);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; height: auto; }
+    .hero-left { padding: 120px 28px 60px; }
+    .hero-left::after { display: none; }
+    .hero-right { height: 55vw; min-height: 280px; }
+    section { padding: 64px 24px; }
+    .about { grid-template-columns: 1fr; }
+    .about-imgs { height: 320px; margin-top: 40px; }
+    .services-grid { grid-template-columns: 1fr; gap: 2px; }
+    .services-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .services-header p { text-align: left; }
+    .gallery { padding: 60px 24px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-grid .g-tall, .gallery-grid .g-wide { grid-row: auto; grid-column: auto; height: 220px; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .steps::before { display: none; }
+    .test-layout { grid-template-columns: 1fr; }
+    .test-card.featured { grid-column: auto; }
+    .policies { grid-template-columns: 1fr; }
+    .policy-left { border-right: none; border-bottom: 1px solid rgba(59,31,58,0.08); padding: 60px 24px; }
+    .policy-right { padding: 60px 24px; }
+    .book-section { grid-template-columns: 1fr; }
+    .book-left { padding: 60px 24px; min-height: 300px; }
+    .book-right { padding: 60px 24px; }
+    footer { grid-template-columns: 1fr; gap: 36px; padding: 50px 24px 85px; }
+    .foot-base { padding: 14px 24px 65px; flex-direction: column; gap: 8px; text-align: center; }
+    .values { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- WATERMARKS -->
+<div class="sample-watermark">SAMPLE</div>
+<div class="sample-repeat-text">
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+</div>
+
+<div class="cmb-bottom-bar">
+  <span class="cmb-badge">Sample Site</span>
+  This is a complimentary preview — designed exclusively for you by <strong style="color:#C9A84C;margin:0 4px;">CMB Enterprise Group LLC</strong> · Contact Carla Bee @ <a href="mailto:info@carlabee.com">info@carlabee.com</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div>
+    <div class="nav-logo">Crowned</div>
+    <span class="nav-tagline">Natural Hair Studio · Kansas City</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#book" class="nav-book">Book Appointment</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-crown">Natural Hair Artistry</div>
+    <h1>Your Hair.<br><em>Your Crown.</em></h1>
+    <p class="hero-sub">Where texture is celebrated & beauty is unapologetic.</p>
+    <p>Specializing in natural styles, protective styling, loc care, and luxury treatments for women of color. Located in Kansas City's premier salon district.</p>
+    <div class="hero-btns">
+      <a href="#book" class="btn-gold">Book Now</a>
+      <a href="#gallery" class="btn-outline-gold">View Portfolio</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hstat-num">8+</div>
+        <div class="hstat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="hstat-num">1.2K</div>
+        <div class="hstat-label">Clients Served</div>
+      </div>
+      <div>
+        <div class="hstat-num">4.9★</div>
+        <div class="hstat-label">Google Rating</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=900&q=85" alt="Natural hair styling" />
+    <div class="hero-photo-tag">♛ &nbsp; Celebrating Natural Beauty &nbsp; ♛</div>
+  </div>
+</div>
+
+<!-- GOLD TICKER -->
+<div class="gold-ticker">
+  <div class="gold-ticker-track">
+    <span>Box Braids</span><span class="sep">✦</span>
+    <span>Locs & Retwists</span><span class="sep">✦</span>
+    <span>Silk Press</span><span class="sep">✦</span>
+    <span>Knotless Braids</span><span class="sep">✦</span>
+    <span>TWA Styling</span><span class="sep">✦</span>
+    <span>Crochet Styles</span><span class="sep">✦</span>
+    <span>Passion Twists</span><span class="sep">✦</span>
+    <span>Protective Styles</span><span class="sep">✦</span>
+    <span>Natural Treatments</span><span class="sep">✦</span>
+    <span>Box Braids</span><span class="sep">✦</span>
+    <span>Locs & Retwists</span><span class="sep">✦</span>
+    <span>Silk Press</span><span class="sep">✦</span>
+    <span>Knotless Braids</span><span class="sep">✦</span>
+    <span>TWA Styling</span><span class="sep">✦</span>
+    <span>Crochet Styles</span><span class="sep">✦</span>
+    <span>Passion Twists</span><span class="sep">✦</span>
+    <span>Protective Styles</span><span class="sep">✦</span>
+    <span>Natural Treatments</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <div class="section-eyebrow" style="color:rgba(232,204,138,0.7);">Meet Your Stylist</div>
+    <h2 class="section-title">A Passion for <em>Natural Beauty</em></h2>
+    <p>With over 8 years behind the chair, I've dedicated my craft to celebrating the natural texture, volume, and versatility of Black hair. Every client who sits in my chair deserves to leave feeling seen, cared for, and absolutely stunning.</p>
+    <p>I trained under some of the most respected natural hair artists in the country, and I continue to invest in education so I can bring the latest techniques and healthiest practices directly to my Kansas City community.</p>
+    <span class="about-sig">Imani Rose</span>
+    <div class="about-sig-title">Master Stylist · Crowned Natural Hair Studio</div>
+  </div>
+  <div class="about-imgs">
+    <img class="about-img-main" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=700&q=85" alt="Stylist at work" />
+    <img class="about-img-sm" src="https://images.unsplash.com/photo-1542345812-d98b5cd6cf98?w=500&q=85" alt="Beautiful natural hair" />
+    <div class="about-award">
+      <div class="aw-num">8+</div>
+      <div class="aw-txt">Years of<br>Artistry</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow">What We Offer</div>
+      <h2 class="section-title">Our <em>Signature</em> Services</h2>
+    </div>
+    <p>All services include a consultation, scalp assessment, and personalized product recommendations. Prices start at listed rates.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">💆🏾‍♀️</span>
+      <h3>Natural Hair Consultation</h3>
+      <p>In-depth scalp and hair health assessment. We build your personal hair care plan from the ground up.</p>
+      <div class="service-price">$45 <span>/ 45 min</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✨</span>
+      <h3>Silk Press & Style</h3>
+      <p>Smooth, sleek, heat-protected silk press that brings out shine without sacrificing your natural curl pattern.</p>
+      <div class="service-price">$95+ <span>/ length based</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🌿</span>
+      <h3>Box Braids & Knotless</h3>
+      <p>Classic and knotless box braids with a gentle technique that minimizes tension and preserves your edges.</p>
+      <div class="service-price">$175+ <span>/ size & length</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🌀</span>
+      <h3>Loc Services</h3>
+      <p>New loc starts, retwists, interlocking, and loc extensions. We grow your locs with intention and care.</p>
+      <div class="service-price">$80+ <span>/ service type</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🦋</span>
+      <h3>Passion & Senegalese Twists</h3>
+      <p>Gorgeous protective twists installed with care. Available in a full range of colors and lengths.</p>
+      <div class="service-price">$160+ <span>/ size & length</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">💧</span>
+      <h3>Deep Conditioning Treatment</h3>
+      <p>Luxury steam treatment with our signature botanical blend. Restore moisture, strength, and shine in one session.</p>
+      <div class="service-price">$65 <span>/ 60 min</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header">
+    <div>
+      <div class="section-eyebrow">The Portfolio</div>
+      <h2 class="section-title">Our <em>Work</em></h2>
+    </div>
+    <a href="#" style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;">Follow @CrownedKC →</a>
+  </div>
+  <div class="gallery-grid">
+    <div class="g-item g-tall">
+      <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&q=85" alt="Box braids style" />
+      <div class="g-overlay"><span class="g-label">Box Braids</span></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1542345812-d98b5cd6cf98?w=500&q=85" alt="Natural afro" />
+      <div class="g-overlay"><span class="g-label">Natural Afro</span></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=500&q=85" alt="Loc styles" />
+      <div class="g-overlay"><span class="g-label">Loc Styling</span></div>
+    </div>
+    <div class="g-item g-wide">
+      <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=85" alt="Protective styles" />
+      <div class="g-overlay"><span class="g-label">Protective Styling</span></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=85" alt="Salon session" />
+      <div class="g-overlay"><span class="g-label">Salon Experience</span></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=500&q=85" alt="Twist out" />
+      <div class="g-overlay"><span class="g-label">Twist Out</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-eyebrow" style="justify-content:center;">How It Works</div>
+  <h2 class="section-title" style="text-align:center;">Your <em>Journey</em> with Us</h2>
+  <p>We make the booking process as smooth as your silk press. Here's what to expect from start to finish.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Book Online</h3>
+      <p>Choose your service, select a date and time, and pay a small deposit to secure your appointment.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Consultation</h3>
+      <p>Arrive and get a personalized consultation. We'll discuss your hair goals, health, and style vision.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>The Service</h3>
+      <p>Relax and enjoy your time in the chair. Every service is crafted with precision and intention.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Love Your Crown</h3>
+      <p>Leave with aftercare tips, product recommendations, and hair that turns heads everywhere you go.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="section-eyebrow">Client Love</div>
+  <h2 class="section-title">What They're <em>Saying</em></h2>
+  <div class="test-layout">
+    <div class="test-card featured">
+      <div class="test-stars">★ ★ ★ ★ ★</div>
+      <blockquote>"I've been natural for 7 years and I've never had a stylist who truly understood my hair the way Imani does. She took the time to learn my texture, asked the right questions, and gave me the most beautiful knotless braids I've ever had. I left that salon feeling like royalty — because I was treated like it."</blockquote>
+      <div class="reviewer-row">
+        <div class="r-avatar">TJ</div>
+        <div>
+          <div class="r-name">Tamika J.</div>
+          <div class="r-sub">Kansas City, MO · Google Review</div>
+        </div>
+        <span class="test-service-tag">Knotless Braids</span>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★ ★ ★ ★ ★</div>
+      <blockquote>"My silk press was PERFECT. No heat damage, no frizz, just smooth gorgeous hair that lasted two weeks. This is my salon for life."</blockquote>
+      <div class="reviewer-row">
+        <div class="r-avatar" style="background:var(--rose);">NW</div>
+        <div>
+          <div class="r-name">Niecy W.</div>
+          <div class="r-sub">Leawood, KS · Yelp</div>
+        </div>
+        <span class="test-service-tag">Silk Press</span>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★ ★ ★ ★ ★</div>
+      <blockquote>"My locs have never looked this healthy. Imani is patient, knowledgeable, and the studio is absolutely beautiful. Worth every dollar."</blockquote>
+      <div class="reviewer-row">
+        <div class="r-avatar" style="background:var(--plum);">CM</div>
+        <div>
+          <div class="r-name">Crystal M.</div>
+          <div class="r-sub">Overland Park, KS · Facebook</div>
+        </div>
+        <span class="test-service-tag">Loc Retwist</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<div class="policies">
+  <div class="policy-left">
+    <div class="section-eyebrow">Good to Know</div>
+    <h2 class="section-title" style="font-size:2.2rem;margin-bottom:36px;">Studio <em>Policies</em></h2>
+    <div class="policy-item">
+      <div class="policy-icon">📅</div>
+      <div>
+        <h4>Booking & Deposits</h4>
+        <p>All appointments require a non-refundable deposit of 25% to secure your spot. Deposits apply toward your total service cost.</p>
+      </div>
+    </div>
+    <div class="policy-item">
+      <div class="policy-icon">⏰</div>
+      <div>
+        <h4>Cancellation Policy</h4>
+        <p>We require 48-hour notice for cancellations. Late cancellations may forfeit the deposit. We understand life happens — please communicate early.</p>
+      </div>
+    </div>
+    <div class="policy-item">
+      <div class="policy-icon">⏱️</div>
+      <div>
+        <h4>Late Arrivals</h4>
+        <p>Please arrive on time. Arrivals more than 15 minutes late may need to be rescheduled. Your time and our next client's time matter equally.</p>
+      </div>
+    </div>
+  </div>
+  <div class="policy-right">
+    <div class="section-eyebrow">Hours & Location</div>
+    <h2 class="section-title" style="font-size:2.2rem;margin-bottom:36px;">Visit the <em>Studio</em></h2>
+    <div class="policy-item">
+      <div class="policy-icon">📍</div>
+      <div>
+        <h4>Location</h4>
+        <p>4521 Main Street, Suite 210<br>Kansas City, MO 64111<br>Located in the Crossroads Arts District</p>
+      </div>
+    </div>
+    <div class="policy-item">
+      <div class="policy-icon">🕐</div>
+      <div>
+        <h4>Studio Hours</h4>
+        <p>Tuesday – Friday: 9am – 7pm<br>Saturday: 8am – 5pm<br>Sunday – Monday: Closed</p>
+      </div>
+    </div>
+    <div class="policy-item">
+      <div class="policy-icon">🚗</div>
+      <div>
+        <h4>Parking</h4>
+        <p>Free street parking available. Paid garage parking accessible one block south on Main Street.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING FORM -->
+<div class="book-section" id="book">
+  <div class="book-left">
+    <div class="book-left-content">
+      <div class="section-eyebrow">Ready to Glow?</div>
+      <h2 class="section-title">Book Your <em>Appointment</em></h2>
+      <p>Fill out the form to request your appointment. We'll confirm within 24 hours and send your prep guide before your visit.</p>
+      <div class="contact-rows">
+        <div class="c-row">
+          <div class="c-icon-circle">📍</div>
+          <span>4521 Main St, Suite 210 · Kansas City, MO</span>
+        </div>
+        <div class="c-row">
+          <div class="c-icon-circle">📧</div>
+          <span>hello@crownedkc.com</span>
+        </div>
+        <div class="c-row">
+          <div class="c-icon-circle">📱</div>
+          <span>(816) 555-0294</span>
+        </div>
+        <div class="c-row">
+          <div class="c-icon-circle">💬</div>
+          <span>DM @CrownedKC on Instagram</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="book-right">
+    <div class="section-eyebrow">Request an Appointment</div>
+    <h2 class="section-title" style="font-size:2rem;color:var(--deep);margin-bottom:32px;">Let's Get You <em>Crowned</em></h2>
+    <div class="form-row">
+      <div class="fg">
+        <label>First Name</label>
+        <input type="text" placeholder="Imani" />
+      </div>
+      <div class="fg">
+        <label>Last Name</label>
+        <input type="text" placeholder="Johnson" />
+      </div>
+    </div>
+    <div class="fg">
+      <label>Phone Number</label>
+      <input type="tel" placeholder="(816) 555-0000" />
+    </div>
+    <div class="fg">
+      <label>Email Address</label>
+      <input type="email" placeholder="you@example.com" />
+    </div>
+    <div class="fg">
+      <label>Service Requested</label>
+      <select>
+        <option>— Choose a Service —</option>
+        <option>Hair Consultation ($45)</option>
+        <option>Silk Press & Style ($95+)</option>
+        <option>Box Braids / Knotless ($175+)</option>
+        <option>Loc Services ($80+)</option>
+        <option>Passion / Senegalese Twists ($160+)</option>
+        <option>Deep Conditioning Treatment ($65)</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label>Preferred Date & Time</label>
+      <input type="text" placeholder="e.g., Saturday May 17, morning preferred" />
+    </div>
+    <div class="fg">
+      <label>Tell Us About Your Hair</label>
+      <textarea placeholder="Hair type, length, current condition, any concerns or goals..."></textarea>
+    </div>
+    <button class="btn-gold" style="width:100%;border:none;cursor:pointer;font-size:11px;letter-spacing:2.5px;padding:18px;text-align:center;">♛ &nbsp; Request My Appointment</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <span class="foot-logo">Crowned</span>
+    <span class="foot-tagline">Natural Hair Studio · Kansas City, MO</span>
+    <p>Celebrating the beauty, strength, and versatility of natural Black hair. Every texture. Every length. Every crown.</p>
+    <div class="foot-socials">
+      <a class="fsoc" href="#">ig</a>
+      <a class="fsoc" href="#">f</a>
+      <a class="fsoc" href="#">tt</a>
+      <a class="fsoc" href="#">📌</a>
+    </div>
+  </div>
+  <div class="fcol">
+    <h4>Navigate</h4>
+    <ul>
+      <li><a href="#about">About Imani</a></li>
+      <li><a href="#services">Services & Pricing</a></li>
+      <li><a href="#gallery">Portfolio</a></li>
+      <li><a href="#reviews">Client Reviews</a></li>
+      <li><a href="#book">Book Appointment</a></li>
+    </ul>
+  </div>
+  <div class="fcol">
+    <h4>Services</h4>
+    <ul>
+      <li><a href="#services">Silk Press</a></li>
+      <li><a href="#services">Box Braids</a></li>
+      <li><a href="#services">Loc Services</a></li>
+      <li><a href="#services">Passion Twists</a></li>
+      <li><a href="#services">Deep Conditioning</a></li>
+    </ul>
+  </div>
+  <div class="fcol">
+    <h4>Studio Hours</h4>
+    <ul>
+      <li><a href="#">Tue–Fri: 9am – 7pm</a></li>
+      <li><a href="#">Saturday: 8am – 5pm</a></li>
+      <li><a href="#">Sun–Mon: Closed</a></li>
+      <li><a href="#">hello@crownedkc.com</a></li>
+      <li><a href="#">(816) 555-0294</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="foot-base">
+  <span>© 2025 Crowned Natural Hair Studio. All rights reserved.</span>
+  <span>Site by CMB Enterprise Group LLC</span>
+</div>
+
+</body>
+</html>
