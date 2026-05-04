@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)file:///C:/Users/cmb20/Downloads/intake-form.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Client Intake Form | CMB Enterprise Group LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Website Client Intake Form _ CMB Enterprise Group LLC_files/css2" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #9E2B1A;
+    --red-light: rgba(158,43,26,0.09);
+    --red-ring: rgba(158,43,26,0.18);
+    --dark: #1a1a1a;
+    --body: #3a3a3a;
+    --muted: #6b6b6b;
+    --border: #e0e0e0;
+    --border-focus: #9E2B1A;
+    --bg: #faf9f7;
+    --card: #ffffff;
+    --surface: #f4f2ef;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--body);
+    min-height: 100vh;
+    padding: 0;
+    line-height: 1.6;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--red);
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .topbar-brand {
+    font-family: var(--font-display);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .topbar-contact {
+    font-size: 12px;
+    color: rgba(255,255,255,0.82);
+  }
+  .topbar-contact a { color: rgba(255,255,255,0.9); text-decoration: none; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #7a1e0e 0%, #9E2B1A 50%, #b53520 100%);
+    padding: 56px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 42px);
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    color: rgba(255,255,255,0.82);
+    font-size: 15px;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-wrap {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    position: sticky;
+    top: 41px;
+    z-index: 90;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 7px;
+  }
+  .progress-track {
+    height: 5px;
+    background: #e8e5e0;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--red);
+    border-radius: 99px;
+    transition: width 0.45s cubic-bezier(.4,0,.2,1);
+    width: 14%;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── SECTION CARD ── */
+  .section-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 0;
+    display: none;
+    animation: fadeUp 0.3s ease both;
+  }
+  .section-card.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+  .section-subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── FIELDS ── */
+  .field-group { margin-bottom: 22px; }
+  .field-group:last-of-type { margin-bottom: 0; }
+
+  label.field-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 7px;
+  }
+  label.field-label .req { color: var(--red); }
+  label.field-label .hint-inline {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 12px;
+    margin-left: 4px;
+  }
+
+  input[type=text],
+  input[type=email],
+  input[type=tel],
+  input[type=url],
+  textarea,
+  select {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    color: var(--dark);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--red-ring);
+  }
+  input::placeholder, textarea::placeholder { color: #b0aca5; }
+  textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .two-col { grid-template-columns: 1fr; } }
+
+  .url-stack input { margin-bottom: 8px; }
+  .url-stack input:last-child { margin-bottom: 0; }
+
+  /* ── PILL SELECTORS ── */
+  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    font-size: 13px;
+    font-family: var(--font-body);
+    color: var(--body);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    line-height: 1;
+  }
+  .pill:hover { border-color: var(--red); color: var(--red); }
+  .pill.selected {
+    background: var(--red-light);
+    border-color: var(--red);
+    color: var(--red);
+    font-weight: 500;
+  }
+  .pill input { display: none; }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    background: var(--surface);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.55;
+  }
+  .info-box strong { color: var(--dark); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+
+  /* ── NAV BUTTONS ── */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    gap: 12px;
+  }
+  .btn-back {
+    padding: 10px 22px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-back:hover { background: var(--surface); color: var(--body); }
+
+  .btn-next {
+    padding: 11px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    border: none;
+    border-radius: 8px;
+    background: var(--red);
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-next:hover { opacity: 0.88; }
+  .btn-next:active { transform: scale(0.98); }
+
+  /* ── REVIEW CARD ── */
+  .review-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    display: none;
+    animation: fadeUp 0.3s ease both;
+  }
+  .review-card.active { display: block; }
+  .review-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .review-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .review-body {
+    font-size: 13px;
+    color: var(--body);
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    border: none;
+    border-radius: 10px;
+    background: var(--red);
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .btn-submit:hover { opacity: 0.88; }
+  .btn-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+
+  .legal-note {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* ── SUCCESS ── */
+  .success-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 32px;
+    text-align: center;
+    display: none;
+    animation: fadeUp 0.4s ease both;
+  }
+  .success-card.active { display: block; }
+  .success-icon-wrap {
+    width: 64px; height: 64px;
+    background: var(--red-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+  }
+  .success-card h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .success-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 440px;
+    margin: 0 auto 20px;
+  }
+  .success-contact {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 24px;
+    font-size: 13px;
+    color: var(--body);
+    line-height: 1.7;
+    margin-top: 4px;
+  }
+  .success-contact a { color: var(--red); text-decoration: none; font-weight: 500; }
+
+  /* ── FOOTER ── */
+  .form-footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .form-footer a { color: var(--red); text-decoration: none; }
+
+  /* ── LOADING SPINNER ── */
+  .spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── WATERMARK NOTICE ── */
+  .powered-bar {
+    background: var(--dark);
+    padding: 10px 24px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em;
+  }
+  .powered-bar span { color: rgba(255,255,255,0.75); }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-brand">CMB Enterprise Group LLC</div>
+  <div class="topbar-contact"><a href="mailto:info@carlabee.com">info@carlabee.com</a></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Digital Solutions Specialist &amp; Web Consultant</div>
+  <h1>Website Client Intake Form</h1>
+  <p>Help us build your perfect website. Complete each section and we'll be in touch within 1–2 business days to get you started.</p>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-meta">
+    <span id="section-label">Section 1 of 7 — Contact Information</span>
+    <span id="pct-label">14%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill" style="width: 14%;"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 1: CONTACT -->
+  <div class="section-card active" id="sec-1">
+    <div class="section-title">Contact Information</div>
+    <div class="section-subtitle">Let us know how to reach you.</div>
+
+    <div class="two-col">
+      <div class="field-group">
+        <label class="field-label">Full Name <span class="req">*</span></label>
+        <input type="text" id="full-name" name="full_name" placeholder="Jane Smith" required="">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Business Name <span class="req">*</span></label>
+        <input type="text" id="business-name" name="business_name" placeholder="Smith &amp; Co." required="">
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="field-group">
+        <label class="field-label">Phone Number <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required="">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="jane@yourbusiness.com" required="">
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Current Website <span class="hint-inline">(if you have one)</span></label>
+      <input type="url" id="current-site" name="current_website" placeholder="https://yourbusiness.com">
+    </div>
+    <div class="two-col">
+      <div class="field-group">
+        <label class="field-label">City</label>
+        <input type="text" id="city" name="city" placeholder="Kansas City">
+      </div>
+      <div class="field-group">
+        <label class="field-label">State</label>
+        <input type="text" id="state" name="state" placeholder="MO">
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Preferred Contact Method <span class="req">*</span></label>
+      <div class="pill-group" id="contact-method">
+        <label class="pill"><input type="radio" name="contact_method" value="Email"> Email</label>
+        <label class="pill"><input type="radio" name="contact_method" value="Phone Call"> Phone Call</label>
+        <label class="pill"><input type="radio" name="contact_method" value="Text Message"> Text Message</label>
+        <label class="pill"><input type="radio" name="contact_method" value="Video Call"> Video Call</label>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span></span>
+      <button class="btn-next" onclick="goTo(2)">Next <span>→</span></button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: BUSINESS -->
+  <div class="section-card" id="sec-2">
+    <div class="section-title">About Your Business</div>
+    <div class="section-subtitle">Tell us about what you do and who you serve.</div>
+
+    <div class="field-group">
+      <label class="field-label">What does your business do? <span class="req">*</span></label>
+      <textarea id="biz-desc" name="business_description" placeholder="Describe your products and/or services in a few sentences..."></textarea>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Who is your target audience / ideal customer? <span class="req">*</span></label>
+      <textarea id="audience" name="target_audience" placeholder="e.g. Small business owners in the KC area aged 30–55 looking for affordable web services..."></textarea>
+    </div>
+    <div class="two-col">
+      <div class="field-group">
+        <label class="field-label">How long in business?</label>
+        <input type="text" id="biz-age" name="years_in_business" placeholder="e.g. 3 years, Just starting">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Slogan or tagline?</label>
+        <input type="text" id="tagline" name="tagline" placeholder="Leave blank if none">
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">What makes you different from competitors?</label>
+      <textarea id="differentiator" name="differentiator" placeholder="e.g. Same-day service, personalized consultations, family-owned..."></textarea>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(1)">← Back</button>
+      <button class="btn-next" onclick="goTo(3)">Next →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 3: GOALS -->
+  <div class="section-card" id="sec-3">
+    <div class="section-title">Website Goals &amp; Purpose</div>
+    <div class="section-subtitle">Help us understand what your website needs to do.</div>
+
+    <div class="field-group">
+      <label class="field-label">Main goal of your website <span class="req">*</span></label>
+      <div class="pill-group">
+        <label class="pill"><input type="radio" name="main_goal" value="Showcase my business"> Showcase my business</label>
+        <label class="pill"><input type="radio" name="main_goal" value="Sell products/services"> Sell products/services</label>
+        <label class="pill"><input type="radio" name="main_goal" value="Generate leads"> Generate leads</label>
+        <label class="pill"><input type="radio" name="main_goal" value="Share info / blog"> Share info / blog</label>
+        <label class="pill"><input type="radio" name="main_goal" value="Book appointments"> Book appointments</label>
+        <label class="pill"><input type="radio" name="main_goal" value="Other"> Other</label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field-group">
+      <label class="field-label">Pages you need <span class="req">*</span> <span class="hint-inline">(select all that apply)</span></label>
+      <div class="pill-group" id="pages-group">
+        <label class="pill"><input type="checkbox" name="pages" value="Home"> Home</label>
+        <label class="pill"><input type="checkbox" name="pages" value="About"> About</label>
+        <label class="pill"><input type="checkbox" name="pages" value="Services"> Services</label>
+        <label class="pill"><input type="checkbox" name="pages" value="Contact"> Contact</label>
+        <label class="pill"><input type="checkbox" name="pages" value="Portfolio/Gallery"> Portfolio / Gallery</label>
+        <label class="pill"><input type="checkbox" name="pages" value="Blog"> Blog</label>
+        <label class="pill"><input type="checkbox" name="pages" value="Testimonials"> Testimonials</label>
+        <label class="pill"><input type="checkbox" name="pages" value="FAQ"> FAQ</label>
+        <label class="pill"><input type="checkbox" name="pages" value="Shop/Store"> Shop / Store</label>
+        <label class="pill"><input type="checkbox" name="pages" value="Booking/Calendar"> Booking / Calendar</label>
+        <label class="pill"><input type="checkbox" name="pages" value="Events"> Events</label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field-group">
+      <label class="field-label">Special features needed? <span class="hint-inline">(select all that apply)</span></label>
+      <div class="pill-group" id="features-group">
+        <label class="pill"><input type="checkbox" name="features" value="Contact Form"> Contact Form</label>
+        <label class="pill"><input type="checkbox" name="features" value="Online Payments"> Online Payments</label>
+        <label class="pill"><input type="checkbox" name="features" value="Newsletter Signup"> Newsletter Signup</label>
+        <label class="pill"><input type="checkbox" name="features" value="Live Chat"> Live Chat</label>
+        <label class="pill"><input type="checkbox" name="features" value="Social Media Feed"> Social Media Feed</label>
+        <label class="pill"><input type="checkbox" name="features" value="Photo Gallery"> Photo Gallery</label>
+        <label class="pill"><input type="checkbox" name="features" value="Appointment Scheduling"> Appointment Scheduling</label>
+        <label class="pill"><input type="checkbox" name="features" value="Member Login"> Member Login Area</label>
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Other features — describe here:</label>
+      <textarea name="other_features" placeholder="Any additional functionality you need..."></textarea>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(2)">← Back</button>
+      <button class="btn-next" onclick="goTo(4)">Next →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: DESIGN -->
+  <div class="section-card" id="sec-4">
+    <div class="section-title">Design &amp; Brand Preferences</div>
+    <div class="section-subtitle">Help us nail your look and feel.</div>
+
+    <div class="info-box">
+      <strong>Pro tip:</strong> Gather 2–3 websites you love and paste the links below — it helps us match your vision much faster.
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Websites you like the look of:</label>
+      <div class="url-stack">
+        <input type="url" name="example_site_1" placeholder="1. https://">
+        <input type="url" name="example_site_2" placeholder="2. https://">
+        <input type="url" name="example_site_3" placeholder="3. https://">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Overall feel / vibe <span class="req">*</span></label>
+      <div class="pill-group">
+        <label class="pill"><input type="radio" name="vibe" value="Professional &amp; Corporate"> Professional &amp; Corporate</label>
+        <label class="pill"><input type="radio" name="vibe" value="Clean &amp; Minimal"> Clean &amp; Minimal</label>
+        <label class="pill"><input type="radio" name="vibe" value="Bold &amp; Modern"> Bold &amp; Modern</label>
+        <label class="pill"><input type="radio" name="vibe" value="Warm &amp; Friendly"> Warm &amp; Friendly</label>
+        <label class="pill"><input type="radio" name="vibe" value="Elegant &amp; Luxurious"> Elegant &amp; Luxurious</label>
+        <label class="pill"><input type="radio" name="vibe" value="Fun &amp; Creative"> Fun &amp; Creative</label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field-group">
+      <label class="field-label">Primary brand color(s) <span class="req">*</span></label>
+      <input type="text" name="primary_colors" placeholder="e.g. Navy Blue, Gold (#FFD700), or &#39;I don&#39;t have brand colors yet&#39;">
+    </div>
+    <div class="two-col">
+      <div class="field-group">
+        <label class="field-label">Secondary / accent color(s)</label>
+        <input type="text" name="secondary_colors" placeholder="e.g. White, Cream">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Colors you do NOT want</label>
+        <input type="text" name="colors_avoid" placeholder="e.g. Orange, Neon Green">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Font style preference</label>
+      <div class="pill-group">
+        <label class="pill"><input type="radio" name="font_style" value="Modern/Sans-serif"> Modern / Sans-serif</label>
+        <label class="pill"><input type="radio" name="font_style" value="Classic/Serif"> Classic / Serif</label>
+        <label class="pill"><input type="radio" name="font_style" value="Script/Elegant"> Script / Elegant</label>
+        <label class="pill"><input type="radio" name="font_style" value="No preference"> No preference</label>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Do you have a logo? <span class="req">*</span></label>
+      <div class="pill-group">
+        <label class="pill"><input type="radio" name="logo_status" value="Yes - I will provide it"> Yes — I'll provide it</label>
+        <label class="pill"><input type="radio" name="logo_status" value="No - I need one designed"> No — I need one designed</label>
+        <label class="pill"><input type="radio" name="logo_status" value="No - use text only"> No — use text only</label>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(3)">← Back</button>
+      <button class="btn-next" onclick="goTo(5)">Next →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 5: CONTENT -->
+  <div class="section-card" id="sec-5">
+    <div class="section-title">Content &amp; Media</div>
+    <div class="section-subtitle">Tell us about the content you'll bring to the project.</div>
+
+    <div class="field-group">
+      <label class="field-label">Will you provide written content (text)? <span class="req">*</span></label>
+      <div class="pill-group">
+        <label class="pill"><input type="radio" name="content_provider" value="Yes - I will write it"> Yes — I'll write it</label>
+        <label class="pill"><input type="radio" name="content_provider" value="No - please write it for me"> No — please write it for me</label>
+        <label class="pill"><input type="radio" name="content_provider" value="I need help / some of both"> I need help / some of both</label>
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Will you provide photos / images? <span class="req">*</span></label>
+      <div class="pill-group">
+        <label class="pill"><input type="radio" name="photos_provider" value="Yes - my own photos"> Yes — my own photos</label>
+        <label class="pill"><input type="radio" name="photos_provider" value="No - use stock images"> No — use stock images</label>
+        <label class="pill"><input type="radio" name="photos_provider" value="Both"> Both</label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field-group">
+      <label class="field-label">Social media accounts to link <span class="hint-inline">(select all that apply)</span></label>
+      <div class="pill-group">
+        <label class="pill"><input type="checkbox" name="social_media" value="Facebook"> Facebook</label>
+        <label class="pill"><input type="checkbox" name="social_media" value="Instagram"> Instagram</label>
+        <label class="pill"><input type="checkbox" name="social_media" value="TikTok"> TikTok</label>
+        <label class="pill"><input type="checkbox" name="social_media" value="YouTube"> YouTube</label>
+        <label class="pill"><input type="checkbox" name="social_media" value="LinkedIn"> LinkedIn</label>
+        <label class="pill"><input type="checkbox" name="social_media" value="Pinterest"> Pinterest</label>
+        <label class="pill"><input type="checkbox" name="social_media" value="Twitter/X"> Twitter / X</label>
+        <label class="pill"><input type="checkbox" name="social_media" value="None"> None</label>
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Your social media handles or URLs:</label>
+      <textarea name="social_handles" placeholder="e.g. Instagram: @yourbusiness
+Facebook: facebook.com/yourbusiness"></textarea>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(4)">← Back</button>
+      <button class="btn-next" onclick="goTo(6)">Next →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 6: DOMAIN & HOSTING -->
+  <div class="section-card" id="sec-6">
+    <div class="section-title">Domain &amp; Hosting</div>
+    <div class="section-subtitle">Let us know where your site will live — or we'll help you set it up.</div>
+
+    <div class="field-group">
+      <label class="field-label">Do you already have a domain name? <span class="req">*</span></label>
+      <div class="pill-group">
+        <label class="pill"><input type="radio" name="has_domain" value="Yes"> Yes</label>
+        <label class="pill"><input type="radio" name="has_domain" value="No - I need help getting one"> No — I need help getting one</label>
+        <label class="pill"><input type="radio" name="has_domain" value="Not sure"> Not sure</label>
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">If yes, your domain name:</label>
+      <input type="text" name="domain_name" placeholder="www.yourbusiness.com">
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field-group">
+      <label class="field-label">Do you already have website hosting? <span class="req">*</span></label>
+      <div class="pill-group">
+        <label class="pill"><input type="radio" name="has_hosting" value="Yes"> Yes</label>
+        <label class="pill"><input type="radio" name="has_hosting" value="No - I need help setting it up"> No — I need help setting it up</label>
+        <label class="pill"><input type="radio" name="has_hosting" value="Not sure what hosting is"> Not sure what hosting is</label>
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">If yes, your hosting provider:</label>
+      <input type="text" name="hosting_provider" placeholder="e.g. GoDaddy, Bluehost, Hostinger">
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(5)">← Back</button>
+      <button class="btn-next" onclick="goTo(7)">Next →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 7: TIMELINE & NOTES -->
+  <div class="section-card" id="sec-7">
+    <div class="section-title">Timeline &amp; Final Notes</div>
+    <div class="section-subtitle">Almost done! Just a few more details.</div>
+
+    <div class="field-group">
+      <label class="field-label">When do you need your website completed? <span class="req">*</span></label>
+      <div class="pill-group">
+        <label class="pill"><input type="radio" name="timeline" value="ASAP (rush)"> ASAP (rush)</label>
+        <label class="pill"><input type="radio" name="timeline" value="Within 2-4 weeks"> Within 2–4 weeks</label>
+        <label class="pill"><input type="radio" name="timeline" value="Within 1-2 months"> Within 1–2 months</label>
+        <label class="pill"><input type="radio" name="timeline" value="No rush"> No rush</label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field-group">
+      <label class="field-label">How did you hear about CMB Enterprise Group LLC?</label>
+      <div class="pill-group">
+        <label class="pill"><input type="radio" name="referral_source" value="Referral"> Referral</label>
+        <label class="pill"><input type="radio" name="referral_source" value="Social Media"> Social Media</label>
+        <label class="pill"><input type="radio" name="referral_source" value="Google Search"> Google Search</label>
+        <label class="pill"><input type="radio" name="referral_source" value="Other"> Other</label>
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">If referral — who referred you?</label>
+      <input type="text" name="referred_by" placeholder="Name of person">
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field-group">
+      <label class="field-label">Anything specific you want on your website not covered above?</label>
+      <textarea name="additional_notes" placeholder="Tell us anything else that&#39;s important to you..."></textarea>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Any questions for us before we get started?</label>
+      <textarea name="questions" placeholder="Ask away!"></textarea>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goTo(6)">← Back</button>
+      <button class="btn-next" onclick="goTo(8)">Review &amp; Submit →</button>
+    </div>
+  </div>
+
+  <!-- REVIEW & SUBMIT -->
+  <div class="review-card" id="sec-8">
+    <div class="review-title">Ready to submit?</div>
+    <div class="review-sub">Please review your information before sending.</div>
+    <div class="review-body" id="review-summary"></div>
+    <button class="btn-submit" id="submit-btn" onclick="submitForm()">Submit My Intake Form</button>
+    <p class="legal-note">By submitting, you agree to be contacted at the information provided above. We will never share your data.</p>
+    <div class="nav-row" style="border-top:none; padding-top:12px; margin-top:12px;">
+      <button class="btn-back" onclick="goTo(7)">← Go back and edit</button>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-card" id="sec-success">
+    <div class="success-icon-wrap">✓</div>
+    <h2>You're all set!</h2>
+    <p>Thank you for submitting your website intake form. Carla Bee will personally review your answers and reach out within 1–2 business days to schedule your discovery call.</p>
+    <div class="success-contact">
+      <strong>CMB Enterprise Group LLC</strong><br>
+      Carla Bee — Digital Solutions Specialist &amp; Web Consultant<br>
+      <a href="mailto:info@carlabee.com">info@carlabee.com</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="form-footer">
+    © <script>document.write(new Date().getFullYear())</script>2026 CMB Enterprise Group LLC &nbsp;·&nbsp;
+    Designed by <a href="mailto:info@carlabee.com">Carla Bee</a> &nbsp;·&nbsp;
+    <a href="mailto:info@carlabee.com">info@carlabee.com</a>
+  </div>
+
+</div><!-- /container -->
+
+<div class="powered-bar">
+  Built &amp; designed by <span>CMB Enterprise Group LLC</span>
+</div>
+
+<script>
+  const FORMSPREE_URL = 'https://formspree.io/f/mdabgkle';
+  const TOTAL = 7;
+  let current = 1;
+
+  const sectionNames = [
+    '', 'Contact Information', 'About Your Business',
+    'Website Goals & Purpose', 'Design & Brand Preferences',
+    'Content & Media', 'Domain & Hosting', 'Timeline & Final Notes'
+  ];
+
+  // ── PILL INTERACTIONS ──
+  document.querySelectorAll('.pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+      const inp = this.querySelector('input');
+      if (!inp) return;
+      if (inp.type === 'radio') {
+        const name = inp.name;
+        document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+          r.closest('.pill').classList.remove('selected');
+        });
+        this.classList.add('selected');
+        inp.checked = true;
+      } else {
+        this.classList.toggle('selected');
+        inp.checked = !inp.checked;
+      }
+    });
+  });
+
+  // ── NAVIGATION ──
+  function goTo(n) {
+    document.querySelectorAll('.section-card, .review-card, .success-card').forEach(el => el.classList.remove('active'));
+    if (n <= TOTAL) {
+      document.getElementById('sec-' + n).classList.add('active');
+      current = n;
+      updateProgress(n, Math.round((n / (TOTAL + 1)) * 100));
+      document.getElementById('section-label').textContent =
+        'Section ' + n + ' of ' + TOTAL + ' — ' + sectionNames[n];
+    } else if (n === 8) {
+      buildReview();
+      document.getElementById('sec-8').classList.add('active');
+      current = 8;
+      updateProgress(8, 95);
+      document.getElementById('section-label').textContent = 'Almost there — review your answers';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateProgress(n, pct) {
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('pct-label').textContent = pct + '%';
+  }
+
+  // ── REVIEW SUMMARY ──
+  function buildReview() {
+    const fields = {
+      'Name': val('full-name') || val('full_name'),
+      'Business': val('business-name') || val('business_name'),
+      'Phone': val('phone'),
+      'Email': val('email'),
+      'City/State': [val('city'), val('state')].filter(Boolean).join(', '),
+      'Contact Method': checkedVals('contact_method'),
+      'Business Description': val('biz-desc') || val('business_description'),
+      'Target Audience': val('audience') || val('target_audience'),
+      'Main Goal': checkedVals('main_goal'),
+      'Vibe': checkedVals('vibe'),
+      'Primary Colors': document.querySelector('[name="primary_colors"]')?.value,
+      'Logo Status': checkedVals('logo_status'),
+      'Content Provider': checkedVals('content_provider'),
+      'Photos': checkedVals('photos_provider'),
+      'Domain': checkedVals('has_domain'),
+      'Hosting': checkedVals('has_hosting'),
+      'Timeline': checkedVals('timeline'),
+      'Referred by': document.querySelector('[name="referred_by"]')?.value,
+    };
+
+    let html = '<table style="width:100%;border-collapse:collapse;font-size:13px;">';
+    for (const [k, v] of Object.entries(fields)) {
+      if (!v) continue;
+      html += `<tr>
+        <td style="padding:6px 12px 6px 0;color:#6b6b6b;white-space:nowrap;vertical-align:top;width:38%;">${k}</td>
+        <td style="padding:6px 0;color:#1a1a1a;vertical-align:top;">${v}</td>
+      </tr>`;
+    }
+    html += '</table>';
+    document.getElementById('review-summary').innerHTML = html;
+  }
+
+  function val(id) {
+    const el = document.getElementById(id) || document.querySelector('[name="' + id + '"]');
+    return el ? el.value.trim() : '';
+  }
+  function checkedVals(name) {
+    return [...document.querySelectorAll(`input[name="${name}"]:checked`)]
+      .map(i => i.value).join(', ');
+  }
+  function allCheckedVals(name) {
+    return [...document.querySelectorAll(`input[name="${name}"]:checked`)]
+      .map(i => i.value);
+  }
+
+  // ── SUBMIT ──
+  async function submitForm() {
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Sending...';
+
+    const data = new FormData();
+
+    // Text fields
+    const textFields = [
+      'full_name','business_name','phone','email','current_website',
+      'city','state','business_description','target_audience',
+      'years_in_business','tagline','differentiator','other_features',
+      'example_site_1','example_site_2','example_site_3',
+      'primary_colors','secondary_colors','colors_avoid',
+      'social_handles','domain_name','hosting_provider',
+      'referred_by','additional_notes','questions'
+    ];
+
+    // Map IDs to names
+    const idMap = {
+      'full_name': 'full-name',
+      'business_name': 'business-name',
+      'business_description': 'biz-desc',
+      'target_audience': 'audience',
+      'years_in_business': 'biz-age',
+      'tagline': 'tagline',
+      'differentiator': 'differentiator'
+    };
+
+    textFields.forEach(name => {
+      const id = idMap[name] || name;
+      const el = document.getElementById(id) || document.querySelector(`[name="${name}"]`);
+      if (el && el.value.trim()) data.append(name, el.value.trim());
+    });
+
+    // Radio fields
+    const radioFields = [
+      'contact_method','main_goal','vibe','font_style','logo_status',
+      'content_provider','photos_provider','has_domain','has_hosting',
+      'timeline','referral_source'
+    ];
+    radioFields.forEach(name => {
+      const v = checkedVals(name);
+      if (v) data.append(name, v);
+    });
+
+    // Checkbox fields
+    const checkFields = ['pages','features','social_media'];
+    checkFields.forEach(name => {
+      const vals = allCheckedVals(name);
+      if (vals.length) data.append(name, vals.join(', '));
+    });
+
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        document.querySelectorAll('.section-card, .review-card').forEach(el => el.classList.remove('active'));
+        document.getElementById('sec-success').classList.add('active');
+        document.getElementById('progress-fill').style.width = '100%';
+        document.getElementById('pct-label').textContent = '100%';
+        document.getElementById('section-label').textContent = 'Complete!';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Submit My Intake Form';
+        alert('Something went wrong. Please try again or email info@carlabee.com directly.');
+      }
+    } catch (e) {
+      btn.disabled = false;
+      btn.textContent = 'Submit My Intake Form';
+      alert('Network error. Please try again or email info@carlabee.com directly.');
+    }
+  }
+
+  updateProgress(1, 14);
+</script>
+
+
+</body></html>
