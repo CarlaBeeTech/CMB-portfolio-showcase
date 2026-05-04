@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Root & Bloom — Plant-Based Pop-Up KC</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&family=Abril+Fatface&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --moss:    #3A5A2E;
+    --sage:    #7A9E6E;
+    --leaf:    #A8C898;
+    --mint:    #D6EDD0;
+    --cream:   #F7F3EC;
+    --linen:   #EDE8DF;
+    --bark:    #5C4A3A;
+    --charcoal:#2A2A2A;
+    --gold:    #C8A84B;
+    --blush:   #E8D5C4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ─── WATERMARKS ─── */
+  .sample-watermark {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-35deg);
+    font-family: 'Abril Fatface', serif;
+    font-size: clamp(8rem, 22vw, 16rem);
+    color: rgba(158, 43, 26, 0.13);
+    pointer-events: none;
+    z-index: 9998;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .sample-repeat-text {
+    position: fixed;
+    top: 0; left: 0;
+    width: 200%; height: 200%;
+    pointer-events: none;
+    z-index: 9997;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    transform: rotate(-35deg) translate(-20%, -20%);
+    opacity: 0.045;
+    user-select: none;
+  }
+
+  .sample-repeat-text span {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #9E2B1A;
+    white-space: nowrap;
+    padding: 30px 0;
+  }
+
+  .cmb-bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #2A2A2A;
+    color: #F7F3EC;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 9px 20px;
+    z-index: 9999;
+    border-top: 2px solid #C0392B;
+  }
+
+  .cmb-badge {
+    background: #C0392B;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .cmb-bottom-bar a { color: #C8A84B; text-decoration: none; }
+  .cmb-bottom-bar a:hover { text-decoration: underline; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(247,243,236,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(58,90,46,0.1);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--moss);
+    letter-spacing: 0.5px;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--bark);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--moss); }
+
+  .nav-cta {
+    background: var(--moss) !important;
+    color: white !important;
+    padding: 10px 22px !important;
+    border-radius: 100px !important;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    background: var(--cream);
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+    animation: slideLeft 0.9s ease both;
+  }
+
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 28px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1.5px;
+    background: var(--sage);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 5.5vw, 5.5rem);
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.08;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--moss);
+  }
+
+  .hero h1 .thin { font-weight: 400; }
+
+  .hero-desc {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.8;
+    max-width: 460px;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+  .btn-leaf {
+    background: var(--moss);
+    color: white;
+    padding: 15px 36px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-leaf:hover { background: #2e4823; transform: translateY(-2px); }
+
+  .btn-soft {
+    color: var(--moss);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--sage);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-soft:hover { color: var(--bark); border-color: var(--bark); }
+
+  .hero-badges {
+    display: flex;
+    gap: 12px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--mint);
+    color: var(--moss);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(58,90,46,0.12);
+  }
+
+  /* Hero right — image collage */
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    animation: slideRight 0.9s ease 0.1s both;
+  }
+
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .hero-img-main {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .hero-img-overlay {
+    position: absolute;
+    bottom: 32px; left: 32px;
+    background: rgba(247,243,236,0.95);
+    border-radius: 12px;
+    padding: 18px 22px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(58,90,46,0.12);
+    max-width: 230px;
+  }
+
+  .hero-img-overlay .stat { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700; color: var(--moss); line-height: 1; }
+  .hero-img-overlay .stat-sub { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--bark); margin-top: 4px; }
+
+  /* ─── TICKER ─── */
+  .green-ticker {
+    background: var(--moss);
+    overflow: hidden;
+    padding: 13px 0;
+    white-space: nowrap;
+  }
+
+  .ticker-track {
+    display: inline-block;
+    animation: tickroll 30s linear infinite;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(247,243,236,0.85);
+  }
+
+  .ticker-track span { margin: 0 30px; }
+  .ticker-track .dot { color: var(--leaf); }
+
+  @keyframes tickroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ─── SHARED ─── */
+  section { padding: 100px 80px; }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--sage);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .eyebrow::before { content: '✦'; font-size: 10px; color: var(--gold); }
+
+  .big-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+
+  .big-title em { font-style: italic; color: var(--moss); }
+
+  /* ─── VALUES STRIP ─── */
+  .values {
+    background: var(--moss);
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  .value-item { text-align: center; }
+
+  .value-icon {
+    width: 52px; height: 52px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin: 0 auto 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .value-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .value-item p {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(214,237,208,0.7);
+    line-height: 1.6;
+  }
+
+  /* ─── MENU ─── */
+  .menu-section { background: var(--linen); }
+
+  .menu-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 56px;
+  }
+
+  .menu-header p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--bark);
+    max-width: 380px;
+    line-height: 1.7;
+    text-align: right;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .menu-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(58,90,46,0.06);
+  }
+
+  .menu-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(58,90,46,0.1);
+  }
+
+  .menu-card-img {
+    position: relative;
+    overflow: hidden;
+    height: 210px;
+  }
+
+  .menu-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+
+  .menu-card:hover .menu-card-img img { transform: scale(1.05); }
+
+  .menu-tag-pill {
+    position: absolute;
+    top: 14px; left: 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 100px;
+  }
+
+  .tag-vegan { background: var(--moss); color: white; }
+  .tag-raw   { background: var(--gold); color: white; }
+  .tag-gf    { background: var(--blush); color: var(--bark); }
+  .tag-new   { background: var(--charcoal); color: white; }
+
+  .menu-card-body { padding: 22px; }
+
+  .menu-card-cat {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 7px;
+  }
+
+  .menu-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .menu-card p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .menu-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--mint);
+  }
+
+  .menu-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--moss);
+  }
+
+  .cals {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--sage);
+    background: var(--mint);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  /* ─── SCHEDULE ─── */
+  .schedule { background: var(--cream); }
+
+  .schedule-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 56px;
+  }
+
+  .schedule-img {
+    position: relative;
+    height: 480px;
+  }
+
+  .schedule-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+  }
+
+  .schedule-img-badge {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 110px; height: 110px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 4px solid var(--cream);
+  }
+
+  .schedule-img-badge .num { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: white; line-height: 1; }
+  .schedule-img-badge .sub { font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin-top: 2px; }
+
+  .schedule-cards { display: flex; flex-direction: column; gap: 14px; }
+
+  .sch-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px 24px;
+    border: 1px solid rgba(58,90,46,0.07);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .sch-card:hover { border-color: var(--sage); transform: translateX(6px); }
+
+  .sch-card.featured { background: var(--moss); }
+
+  .sch-day-box {
+    min-width: 52px;
+    text-align: center;
+  }
+
+  .sch-day {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+
+  .sch-card.featured .sch-day { color: rgba(214,237,208,0.7); }
+
+  .sch-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--moss);
+    line-height: 1;
+  }
+
+  .sch-card.featured .sch-date { color: var(--leaf); }
+
+  .sch-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--mint);
+    flex-shrink: 0;
+  }
+
+  .sch-card.featured .sch-divider { background: rgba(255,255,255,0.15); }
+
+  .sch-info h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 3px;
+  }
+
+  .sch-card.featured .sch-info h4 { color: var(--cream); }
+
+  .sch-info p {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--bark);
+  }
+
+  .sch-card.featured .sch-info p { color: rgba(214,237,208,0.7); }
+
+  .sch-time {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--moss);
+    background: var(--mint);
+    padding: 5px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .sch-card.featured .sch-time { background: rgba(214,237,208,0.15); color: var(--leaf); }
+
+  /* ─── NUTRITION FEATURE ─── */
+  .nutrition {
+    background: var(--mint);
+    padding: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .nutrition-text .eyebrow { color: var(--moss); }
+  .nutrition-text .eyebrow::before { color: var(--moss); }
+
+  .nutrition-text p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.8;
+    margin: 16px 0 32px;
+  }
+
+  .nutrient-bars { display: flex; flex-direction: column; gap: 14px; }
+
+  .n-bar-row { display: flex; flex-direction: column; gap: 6px; }
+
+  .n-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--bark);
+  }
+
+  .n-bar-label span:last-child { color: var(--moss); font-weight: 600; }
+
+  .n-bar-track {
+    height: 6px;
+    background: rgba(58,90,46,0.12);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .n-bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: var(--moss);
+    transition: width 1s ease;
+  }
+
+  .nutrition-img {
+    position: relative;
+    height: 440px;
+  }
+
+  .nutrition-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+  }
+
+  .ingredient-tags {
+    position: absolute;
+    bottom: 20px; left: 20px; right: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ing-tag {
+    background: rgba(247,243,236,0.95);
+    color: var(--moss);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(58,90,46,0.15);
+  }
+
+  /* ─── GALLERY ─── */
+  .gallery { padding: 80px; background: var(--linen); }
+
+  .gallery-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .gallery-mosaic {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 200px 200px;
+    gap: 10px;
+  }
+
+  .gallery-mosaic .big { grid-column: span 2; grid-row: span 2; }
+
+  .gallery-mosaic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    transition: transform 0.35s, filter 0.35s;
+  }
+
+  .gallery-mosaic img:hover { transform: scale(1.03); filter: saturate(1.15); }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--cream); padding: 100px 80px; }
+
+  .test-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 60px;
+  }
+
+  .test-card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    border: 1px solid rgba(58,90,46,0.07);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+  }
+
+  .test-card:hover { transform: translateY(-4px); }
+
+  .test-card.featured {
+    background: var(--moss);
+    grid-row: span 1;
+  }
+
+  .test-stars { font-size: 13px; letter-spacing: 1px; color: var(--gold); margin-bottom: 18px; }
+
+  .test-card.featured .test-stars { color: var(--leaf); }
+
+  .test-card blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 22px;
+  }
+
+  .test-card.featured blockquote { color: rgba(214,237,208,0.95); font-size: 19px; }
+
+  .test-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .t-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .t-name { font-size: 13px; font-weight: 600; color: var(--charcoal); }
+  .test-card.featured .t-name { color: var(--cream); }
+  .t-loc { font-size: 11px; font-weight: 300; color: var(--bark); margin-top: 2px; }
+  .test-card.featured .t-loc { color: rgba(214,237,208,0.6); }
+
+  /* ─── CONTACT ─── */
+  .contact-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-green {
+    background: var(--moss);
+    padding: 100px 72px;
+  }
+
+  .contact-green .eyebrow { color: rgba(214,237,208,0.6); }
+  .contact-green .eyebrow::before { color: var(--leaf); }
+  .contact-green .big-title { color: var(--cream); }
+  .contact-green .big-title em { color: var(--leaf); }
+
+  .contact-green > p {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(214,237,208,0.7);
+    line-height: 1.75;
+    margin: 16px 0 40px;
+  }
+
+  .cg-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .cg-icon {
+    width: 40px; height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .cg-txt strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--leaf);
+    margin-bottom: 3px;
+  }
+
+  .cg-txt span {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(214,237,208,0.75);
+  }
+
+  .contact-form {
+    background: var(--linen);
+    padding: 100px 72px;
+  }
+
+  .contact-form .eyebrow { color: var(--sage); }
+
+  .fg { margin-bottom: 20px; }
+
+  .fg label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--bark);
+    margin-bottom: 7px;
+  }
+
+  .fg input, .fg select, .fg textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid rgba(58,90,46,0.15);
+    border-radius: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    color: var(--charcoal);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .fg input:focus, .fg select:focus, .fg textarea:focus {
+    border-color: var(--sage);
+  }
+
+  .fg textarea { height: 110px; resize: vertical; }
+  .fr { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    padding: 70px 80px 85px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+  }
+
+  .foot-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--cream);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .foot-logo-text span { color: var(--gold); }
+
+  footer > div > p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(247,243,236,0.42);
+    line-height: 1.7;
+  }
+
+  .foot-socials { display: flex; gap: 10px; margin-top: 22px; }
+
+  .fsoc {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(247,243,236,0.45);
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .fsoc:hover { border-color: var(--sage); color: var(--sage); }
+
+  .fcol h4 {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 18px;
+  }
+
+  .fcol ul { list-style: none; }
+  .fcol ul li { margin-bottom: 10px; }
+  .fcol ul li a {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(247,243,236,0.42);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .fcol ul li a:hover { color: var(--sage); }
+
+  .foot-base {
+    background: #1e1e1e;
+    padding: 16px 80px 66px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: rgba(247,243,236,0.25);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { height: 50vw; min-height: 280px; }
+    section { padding: 64px 24px; }
+    .values { grid-template-columns: 1fr 1fr; padding: 50px 24px; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .schedule-layout { grid-template-columns: 1fr; }
+    .schedule-img { height: 280px; }
+    .nutrition { grid-template-columns: 1fr; padding: 60px 24px; }
+    .gallery { padding: 60px 24px; }
+    .gallery-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-mosaic .big { grid-column: span 1; grid-row: span 1; height: 200px; }
+    .test-grid { grid-template-columns: 1fr; }
+    .contact-section { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; gap: 36px; padding: 50px 24px 85px; }
+    .foot-base { padding: 14px 24px 66px; flex-direction: column; gap: 8px; }
+    .menu-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .menu-header p { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- WATERMARKS -->
+<div class="sample-watermark">SAMPLE</div>
+<div class="sample-repeat-text">
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+  <span>SAMPLE · NOT LICENSED · CMB ENTERPRISE GROUP LLC</span>
+</div>
+
+<div class="cmb-bottom-bar">
+  <span class="cmb-badge">Sample Site</span>
+  This is a complimentary preview — designed exclusively for you by <strong style="color:#C8A84B;margin:0 4px;">CMB Enterprise Group LLC</strong> · Contact Carla Bee @ <a href="mailto:info@carlabee.com">info@carlabee.com</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Root <span>&</span> Bloom</div>
+  <ul class="nav-links">
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#menu">The Menu</a></li>
+    <li><a href="#schedule">Find Us</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">100% Plant-Based · Kansas City Pop-Up</div>
+    <h1>Eat <em>Well.</em><br><span class="thin">Feel</span> <em>Alive.</em></h1>
+    <p class="hero-desc">Vibrant, whole-food plant-based meals made fresh at pop-ups across Kansas City. Nourishing your body has never tasted this good.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-leaf">Explore the Menu</a>
+      <a href="#schedule" class="btn-soft">Find Us This Week →</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge">🌱 100% Vegan</span>
+      <span class="badge">🌾 Gluten-Free Options</span>
+      <span class="badge">🥦 Whole Foods Only</span>
+      <span class="badge">♻️ Zero Waste</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img class="hero-img-main" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=85" alt="Vibrant healthy bowls" />
+    <div class="hero-img-overlay">
+      <div class="stat">2,400+</div>
+      <div class="stat-sub">Happy customers this year</div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="green-ticker">
+  <div class="ticker-track">
+    <span>Açaí Power Bowls</span><span class="dot">✦</span>
+    <span>Buddha Bowls</span><span class="dot">✦</span>
+    <span>Raw Pad Thai</span><span class="dot">✦</span>
+    <span>Cashew Cheese Wraps</span><span class="dot">✦</span>
+    <span>Green Goddess Smoothies</span><span class="dot">✦</span>
+    <span>Lentil Tacos</span><span class="dot">✦</span>
+    <span>Avocado Toast</span><span class="dot">✦</span>
+    <span>Detox Juices</span><span class="dot">✦</span>
+    <span>Açaí Power Bowls</span><span class="dot">✦</span>
+    <span>Buddha Bowls</span><span class="dot">✦</span>
+    <span>Raw Pad Thai</span><span class="dot">✦</span>
+    <span>Cashew Cheese Wraps</span><span class="dot">✦</span>
+    <span>Green Goddess Smoothies</span><span class="dot">✦</span>
+    <span>Lentil Tacos</span><span class="dot">✦</span>
+    <span>Avocado Toast</span><span class="dot">✦</span>
+    <span>Detox Juices</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- VALUES -->
+<div class="values" id="about">
+  <div class="value-item">
+    <div class="value-icon">🌱</div>
+    <h3>100% Plant-Based</h3>
+    <p>Every single item is vegan. No compromises, no hidden ingredients.</p>
+  </div>
+  <div class="value-item">
+    <div class="value-icon">🥬</div>
+    <h3>Locally Sourced</h3>
+    <p>We partner with KC-area farms for the freshest seasonal produce available.</p>
+  </div>
+  <div class="value-item">
+    <div class="value-icon">♻️</div>
+    <h3>Zero Waste Mission</h3>
+    <p>Compostable packaging, reusable containers, and a commitment to zero landfill.</p>
+  </div>
+  <div class="value-item">
+    <div class="value-icon">💚</div>
+    <h3>Made with Love</h3>
+    <p>Every bowl, wrap, and smoothie is assembled fresh to order, never pre-made.</p>
+  </div>
+</div>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-header">
+    <div>
+      <div class="eyebrow">What We're Serving</div>
+      <h2 class="big-title">The <em>Fresh Menu</em></h2>
+    </div>
+    <p>Rotating seasonal menu crafted by our plant-based chef. Gluten-free, nut-free, and allergy-friendly options always available.</p>
+  </div>
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" alt="Rainbow Buddha Bowl" />
+        <span class="menu-tag-pill tag-vegan">🌱 Vegan</span>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-cat">Signature Bowl</div>
+        <h3>Rainbow Buddha Bowl</h3>
+        <p>Quinoa, roasted sweet potato, red cabbage, edamame, cucumber, avocado, tahini dressing.</p>
+        <div class="menu-card-foot">
+          <div class="menu-price">$14</div>
+          <span class="cals">480 cal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" alt="Açaí Power Bowl" />
+        <span class="menu-tag-pill tag-new">✨ New</span>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-cat">Power Bowl</div>
+        <h3>Açaí Sunrise Bowl</h3>
+        <p>Blended açaí, banana, almond milk base, topped with granola, fresh berries, hemp seeds, honey drizzle.</p>
+        <div class="menu-card-foot">
+          <div class="menu-price">$12</div>
+          <span class="cals">390 cal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&q=80" alt="Green Wraps" />
+        <span class="menu-tag-pill tag-gf">✔ Gluten-Free</span>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-cat">Wrap</div>
+        <h3>Cashew Cheese Collard Wrap</h3>
+        <p>Raw cashew cream cheese, julienned veggies, sprouts, sunflower seeds in a collard green wrap.</p>
+        <div class="menu-card-foot">
+          <div class="menu-price">$13</div>
+          <span class="cals">340 cal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80" alt="Smoothies" />
+        <span class="menu-tag-pill tag-vegan">🌱 Vegan</span>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-cat">Smoothie</div>
+        <h3>Green Goddess Smoothie</h3>
+        <p>Spinach, mango, pineapple, ginger, coconut milk, spirulina. Energy in a cup.</p>
+        <div class="menu-card-foot">
+          <div class="menu-price">$9</div>
+          <span class="cals">220 cal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3df1?w=600&q=80" alt="Raw Pad Thai" />
+        <span class="menu-tag-pill tag-raw">🥢 Raw</span>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-cat">Entrée</div>
+        <h3>Raw Zucchini Pad Thai</h3>
+        <p>Spiralized zucchini noodles, almond-lime sauce, shredded carrot, red pepper, cilantro, crushed peanuts.</p>
+        <div class="menu-card-foot">
+          <div class="menu-price">$15</div>
+          <span class="cals">410 cal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=600&q=80" alt="Energy Balls" />
+        <span class="menu-tag-pill tag-vegan">🌱 Vegan</span>
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-cat">Snack & Sweet</div>
+        <h3>Date & Cacao Energy Bites</h3>
+        <p>Medjool dates, raw cacao, oats, almond butter, chia seeds. Naturally sweet, no refined sugar.</p>
+        <div class="menu-card-foot">
+          <div class="menu-price">$6 / 3pc</div>
+          <span class="cals">180 cal</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule" id="schedule">
+  <div class="eyebrow">Find Us</div>
+  <h2 class="big-title">This Week's <em>Pop-Up Locations</em></h2>
+  <div class="schedule-layout">
+    <div class="schedule-img">
+      <img src="https://images.unsplash.com/photo-1493770348161-369560ae357d?w=700&q=80" alt="Healthy food preparation" />
+      <div class="schedule-img-badge">
+        <div class="num">4</div>
+        <div class="sub">Locations This Week</div>
+      </div>
+    </div>
+    <div class="schedule-cards">
+      <div class="sch-card">
+        <div class="sch-day-box">
+          <div class="sch-day">Thu</div>
+          <div class="sch-date">8</div>
+        </div>
+        <div class="sch-divider"></div>
+        <div class="sch-info">
+          <h4>Westside Community Garden</h4>
+          <p>18th & Summit St, KCMO</p>
+        </div>
+        <span class="sch-time">10am – 2pm</span>
+      </div>
+      <div class="sch-card featured">
+        <div class="sch-day-box">
+          <div class="sch-day">Fri</div>
+          <div class="sch-date">9</div>
+        </div>
+        <div class="sch-divider"></div>
+        <div class="sch-info">
+          <h4>Yoga + Bowls: Westport Studio</h4>
+          <p>4113 Pennsylvania Ave, KCMO</p>
+        </div>
+        <span class="sch-time">11am – 4pm</span>
+      </div>
+      <div class="sch-card">
+        <div class="sch-day-box">
+          <div class="sch-day">Sat</div>
+          <div class="sch-date">10</div>
+        </div>
+        <div class="sch-divider"></div>
+        <div class="sch-info">
+          <h4>City Market — Farmers Market</h4>
+          <p>20 E 5th St, Kansas City MO</p>
+        </div>
+        <span class="sch-time">7am – 1pm</span>
+      </div>
+      <div class="sch-card">
+        <div class="sch-day-box">
+          <div class="sch-day">Sun</div>
+          <div class="sch-date">11</div>
+        </div>
+        <div class="sch-divider"></div>
+        <div class="sch-info">
+          <h4>Loose Park Trail Head</h4>
+          <p>51st & Wornall Rd, KCMO</p>
+        </div>
+        <span class="sch-time">9am – 1pm</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUTRITION -->
+<div class="nutrition">
+  <div class="nutrition-text">
+    <div class="eyebrow">Why Plant-Based?</div>
+    <h2 class="big-title">Food That <em>Fuels You</em></h2>
+    <p>Our menu is designed by a certified plant-based nutritionist to ensure every meal delivers maximum nutrition — not just great taste. Real food. Real results.</p>
+    <div class="nutrient-bars">
+      <div class="n-bar-row">
+        <div class="n-bar-label"><span>Protein (avg per meal)</span><span>28g</span></div>
+        <div class="n-bar-track"><div class="n-bar-fill" style="width:70%;"></div></div>
+      </div>
+      <div class="n-bar-row">
+        <div class="n-bar-label"><span>Fiber</span><span>18g</span></div>
+        <div class="n-bar-track"><div class="n-bar-fill" style="width:85%;background:var(--sage);"></div></div>
+      </div>
+      <div class="n-bar-row">
+        <div class="n-bar-label"><span>Vitamins & Minerals</span><span>95%+ DV</span></div>
+        <div class="n-bar-track"><div class="n-bar-fill" style="width:95%;background:var(--gold);"></div></div>
+      </div>
+      <div class="n-bar-row">
+        <div class="n-bar-label"><span>Added Sugar</span><span>Zero</span></div>
+        <div class="n-bar-track"><div class="n-bar-fill" style="width:2%;background:#ccc;"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="nutrition-img">
+    <img src="https://images.unsplash.com/photo-1540914124281-342587941389?w=700&q=80" alt="Fresh ingredients" />
+    <div class="ingredient-tags">
+      <span class="ing-tag">Quinoa</span>
+      <span class="ing-tag">Avocado</span>
+      <span class="ing-tag">Spirulina</span>
+      <span class="ing-tag">Hemp Seeds</span>
+      <span class="ing-tag">Medjool Dates</span>
+      <span class="ing-tag">Turmeric</span>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header">
+    <div>
+      <div class="eyebrow">The Experience</div>
+      <h2 class="big-title">Food Worth <em>Sharing</em></h2>
+    </div>
+    <a href="#" style="font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--moss);text-decoration:none;">Follow @RootAndBloomKC →</a>
+  </div>
+  <div class="gallery-mosaic">
+    <img class="big" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80" alt="Colorful healthy meal" />
+    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=500&q=80" alt="Fresh produce" />
+    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=80" alt="Açaí bowl" />
+    <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=500&q=80" alt="Smoothie bowls" />
+    <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?w=500&q=80" alt="Salad bowls" />
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="eyebrow">What People Say</div>
+  <h2 class="big-title">Real People, <em>Real Results</em></h2>
+  <div class="test-grid">
+    <div class="test-card featured">
+      <div class="test-stars">★★★★★</div>
+      <blockquote>"Root & Bloom completely changed how I think about food. I've been coming every Saturday for three months — I feel better, I sleep better, and the food is genuinely delicious."</blockquote>
+      <div class="test-author">
+        <div class="t-avatar" style="background:var(--sage);">AK</div>
+        <div>
+          <div class="t-name">Aisha K.</div>
+          <div class="t-loc">Brookside KC · Regular Customer</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <blockquote>"I'm not even vegan and I crave the Buddha Bowl every week. The tahini dressing alone is worth the trip."</blockquote>
+      <div class="test-author">
+        <div class="t-avatar" style="background:var(--moss);">TW</div>
+        <div>
+          <div class="t-name">Tyler W.</div>
+          <div class="t-loc">Westport · Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <blockquote>"Hired them for our wellness corporate lunch. 40 people, every plate was clean. We're booking them again next quarter."</blockquote>
+      <div class="test-author">
+        <div class="t-avatar" style="background:var(--gold);">LP</div>
+        <div>
+          <div class="t-name">Lauren P.</div>
+          <div class="t-loc">Corporate Event · Yelp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-green">
+    <div class="eyebrow">Get in Touch</div>
+    <h2 class="big-title" style="font-size:2.8rem;">Book Us for Your <em>Event</em></h2>
+    <p>Corporate wellness lunches, yoga studios, farmers markets, private events — we bring nourishment to you. Let's make it happen.</p>
+    <div class="cg-row">
+      <div class="cg-icon">📍</div>
+      <div class="cg-txt">
+        <strong>Serving</strong>
+        <span>Kansas City Metro Area</span>
+      </div>
+    </div>
+    <div class="cg-row">
+      <div class="cg-icon">📧</div>
+      <div class="cg-txt">
+        <strong>Email</strong>
+        <span>hello@rootandbloomkc.com</span>
+      </div>
+    </div>
+    <div class="cg-row">
+      <div class="cg-icon">📱</div>
+      <div class="cg-txt">
+        <strong>Phone / Text</strong>
+        <span>(816) 555-0381</span>
+      </div>
+    </div>
+    <div class="cg-row">
+      <div class="cg-icon">⏰</div>
+      <div class="cg-txt">
+        <strong>Pop-Up Hours</strong>
+        <span>Thu–Sun · Private bookings any day</span>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form">
+    <div class="eyebrow">Send a Message</div>
+    <h2 class="big-title" style="font-size:2rem;margin-bottom:30px;">Let's Connect</h2>
+    <div class="fr">
+      <div class="fg">
+        <label>First Name</label>
+        <input type="text" placeholder="Jordan" />
+      </div>
+      <div class="fg">
+        <label>Last Name</label>
+        <input type="text" placeholder="Lee" />
+      </div>
+    </div>
+    <div class="fg">
+      <label>Email Address</label>
+      <input type="email" placeholder="you@example.com" />
+    </div>
+    <div class="fg">
+      <label>Event Type</label>
+      <select>
+        <option>Corporate Wellness Lunch</option>
+        <option>Private Party</option>
+        <option>Yoga / Fitness Studio</option>
+        <option>Farmers Market Collab</option>
+        <option>Wedding / Bridal Event</option>
+        <option>General Inquiry</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label>Tell Us About Your Event</label>
+      <textarea placeholder="Date, location, expected guest count, any dietary needs..."></textarea>
+    </div>
+    <button class="btn-leaf" style="width:100%;border:none;cursor:pointer;font-size:12px;letter-spacing:2px;padding:16px;border-radius:100px;">Send Message 🌱</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <span class="foot-logo-text">Root <span>&</span> Bloom</span>
+    <p>Plant-based pop-up kitchen serving Kansas City with whole-food, locally sourced meals made fresh to order.</p>
+    <div class="foot-socials">
+      <a class="fsoc" href="#">f</a>
+      <a class="fsoc" href="#">ig</a>
+      <a class="fsoc" href="#">tt</a>
+      <a class="fsoc" href="#">🐦</a>
+    </div>
+  </div>
+  <div class="fcol">
+    <h4>Navigate</h4>
+    <ul>
+      <li><a href="#about">Our Values</a></li>
+      <li><a href="#menu">The Menu</a></li>
+      <li><a href="#schedule">Find Us</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Book Us</a></li>
+    </ul>
+  </div>
+  <div class="fcol">
+    <h4>Pop-Up Hours</h4>
+    <ul>
+      <li><a href="#">Thu: 10am – 2pm</a></li>
+      <li><a href="#">Fri: 11am – 4pm</a></li>
+      <li><a href="#">Sat: 7am – 1pm</a></li>
+      <li><a href="#">Sun: 9am – 1pm</a></li>
+      <li><a href="#">Private: Any Day</a></li>
+    </ul>
+  </div>
+  <div class="fcol">
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="mailto:hello@rootandbloomkc.com">hello@rootandbloomkc.com</a></li>
+      <li><a href="tel:8165550381">(816) 555-0381</a></li>
+      <li><a href="#">Kansas City, MO</a></li>
+      <li><a href="#">@RootAndBloomKC</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="foot-base">
+  <span>© 2025 Root & Bloom Plant-Based Kitchen. All rights reserved.</span>
+  <span>Site by CMB Enterprise Group LLC</span>
+</div>
+
+</body>
+</html>
