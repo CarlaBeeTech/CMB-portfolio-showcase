@@ -196,6 +196,46 @@ footer { background: var(--brand-dark); color: white; padding: 56px 40px 40px; }
 .port-img-link:hover .port-img { transform:scale(1.05); }
 .port-img-link:hover .port-overlay { opacity:1; }
 @media (max-width:767px) { .port-overlay { opacity:1; align-items:flex-end; justify-content:flex-start; padding:12px; background:linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%); } }
+
+/* ── ABOUT SECTION ── */
+.about-section { padding: 96px 40px; background: var(--brand-cream); }
+.about-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 380px 1fr; gap: 80px; align-items: center; }
+.about-photo-col { position: relative; }
+.about-photo-wrap { border-radius: 20px; overflow: hidden; aspect-ratio: 4/5; position: relative; }
+.about-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.about-accent { position: absolute; bottom: -18px; left: -18px; width: 110px; height: 110px; background: var(--brand-gold); border-radius: 14px; z-index: 0; }
+.about-photo-wrap { z-index: 1; }
+.about-badge { position: absolute; top: 28px; right: -22px; background: var(--brand-red); color: white; padding: 14px 18px; border-radius: 14px; text-align: center; font-family: var(--font-display); z-index: 2; box-shadow: 0 8px 24px rgba(158,43,26,0.22); }
+.about-badge-num { font-size: 26px; font-weight: 600; display: block; line-height: 1; }
+.about-badge-label { font-size: 10px; opacity: 0.85; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; display: block; }
+.about-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-red); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.about-eyebrow::before { content: ''; display: block; width: 32px; height: 2px; background: var(--brand-gold); border-radius: 2px; }
+.about-name { font-family: var(--font-display); font-size: clamp(32px,4vw,48px); line-height: 1.1; margin-bottom: 6px; }
+.about-name em { color: var(--brand-red); font-style: italic; }
+.about-role { font-size: 14px; color: #888; margin-bottom: 8px; }
+.about-kc { display: inline-flex; align-items: center; gap: 6px; background: var(--brand-light); border: 1px solid #e0dbd2; border-radius: 20px; padding: 5px 14px; font-size: 12px; color: #888; margin-bottom: 22px; }
+.about-divider { width: 48px; height: 3px; background: var(--brand-gold); border-radius: 2px; margin-bottom: 22px; }
+.about-bio { font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 16px; }
+.about-cards { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+.about-card { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; background: white; border: 1px solid #e8e3da; border-radius: 12px; transition: border-color 0.2s; }
+.about-card:hover { border-color: var(--brand-gold); }
+.about-card-icon { width: 42px; height: 42px; background: var(--brand-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.about-card-title { font-weight: 500; font-size: 14px; color: var(--brand-dark); margin-bottom: 3px; }
+.about-card-desc { font-size: 13px; color: #888; line-height: 1.5; }
+.about-cta { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.about-link { color: var(--brand-dark); font-size: 14px; font-weight: 500; text-decoration: none; border-bottom: 2px solid var(--brand-gold); padding-bottom: 2px; }
+/* Mobile about */
+@media (max-width: 767px) { .about-section { display: none; } }
+.about-section-mobile { padding: 40px 24px; background: var(--brand-cream); }
+.about-mobile-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: center top; display: block; margin: 0 auto 20px; border: 4px solid var(--brand-gold); }
+.about-mobile-name { font-family: var(--font-display); font-size: 26px; text-align: center; margin-bottom: 4px; }
+.about-mobile-name em { color: var(--brand-red); font-style: italic; }
+.about-mobile-role { font-size: 13px; color: #888; text-align: center; margin-bottom: 6px; }
+.about-mobile-kc { display: flex; justify-content: center; margin-bottom: 18px; }
+.about-mobile-bio { font-size: 14px; line-height: 1.75; color: #555; margin-bottom: 20px; }
+.about-mobile-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+@media (min-width: 768px) { .about-section-mobile { display: none; } }
+
 </style>
 </head>
 <body>
@@ -213,6 +253,7 @@ footer { background: var(--brand-dark); color: white; padding: 56px 40px 40px; }
       <div class="desktop-nav-links">
         <a onclick="dScrollTo('d-home')" id="dnav-home" class="active">Home</a>
         <a onclick="dScrollTo('d-services')" id="dnav-services">Services</a>
+        <a onclick="dScrollTo('d-about')" id="dnav-about">About</a>
         <a onclick="dScrollTo('d-portfolio')" id="dnav-portfolio">Portfolio</a>
         <a onclick="dScrollTo('d-contact')" id="dnav-contact">Contact</a>
         <a class="desktop-nav-cta" href="intake-form.html">Start My Website &rarr;</a>
@@ -346,6 +387,54 @@ footer { background: var(--brand-dark); color: white; padding: 56px 40px 40px; }
     </div>
   </section>
 
+
+  <!-- ABOUT SECTION - DESKTOP -->
+  <section class="about-section" id="d-about">
+    <div class="about-inner">
+      <div class="about-photo-col">
+        <div style="position:relative;">
+          <div class="about-accent"></div>
+          <div class="about-photo-wrap">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADIAMgDASIAAhEBAxEB/8QAHQABAAEFAQEBAAAAAAAAAAAAAAUCAwQGBwEICf/EAD4QAAEDAwIDBgMGAwYHAAAAAAEAAgMEBRESIQYxQQcTIjJRcUJhgQgUUpGxwSNioRYkM1PR4RdDcoKy8PH/xAAaAQEAAwEBAQAAAAAAAAAAAAAAAQQFAgMG/8QAJxEAAgIBAwQCAwADAAAAAAAAAAECAxEEEiEFEzFBIoEjMlFhceH/2gAMAwEAAhEDEQA/APjJERAEREAREQBERAEREARXqSmnq52w08bpJHcgAtqtvClFDB3t7rjE4+WKEaifcridkYeT1rpnZ+qNPRbvV2rh+BxiZTySP5jD+nz9Fh1dpsk8jY6aWWne/ZufEMrlXJ+jt6eS9o1RFJ3Ozy0RIErZccwBg/ko0gg4IwvRNPweEouLwzxERSQEREAREQBERAEREAREQBERAEREAREQBZtnttRc6wU8DeQ1PceTR1KwhucBb5w7HHRWyKEDEsvikyOZPlHsvK2eyPB70VdyWH4JW2QW2zWzVT0+C7zSvOX/APxR09zFRNJhjpTGNXgZgF3QKqtjqa+4stdO9z2h3jI+Jx6LsfB3Z3bKaCkneXmdh1yHOzz6H5LNsuhVzLls14Uzs+MOEjiVLZ7kw97WwytikaXksb4vZe01G6tk02/vY5Wc43+Yj5L6buPDtJNT4fEwjpstNvnDUdOXVFIxkUo+INXVet3eVg4s6e4cp5ORGwT00IfW1Ebe8yWslPj39FrV7sz2xOqosZZ/iNJ3PzHquiXm1PkmkjrbjG2RrC6JvIE+61LiKOooa+lhbVtqaN/iAb8LuqtQm3yinOC/Vrg0hFMcRUEdO9tTTt0xSdP39lDq1GSksopTg4PDCIik5CIiAIiIAiIgCIiAIiIAiIgCIiAleF6QVd1ia9mtrXZIW1XOtZBUNiiwZC1z8kYwBsAobgyM6KiRpy4jYAbgDmV7Xyxy3USSEuDYsnJ5KrNbrOfRoU/CrK8s3XsxgkmurKh47xwaCTjqu/2XUI25GwXGOyyoqIbG6ro46Nhkds+od0HQBdH4f4gdVyiB+jvxzEfI+yxdUpOxy9G1pZx2KJvhp3SDXqGkDfJUHe6XXC4xOY8jmA4FatxZddNwZTzCpleThlPG4jJUHT8Zirq4aSis9Q1gdoL9JwHL0hVKUcoid8Yy2so4ls9NNFJLPTCXRvpPPK5RdrNXVFYZLZbKmWPUXaA7LWEdQu+XqEut8b5WBr5BhwUPwxTRMEtLNTSTRSFzHd2PKOhK9atQ64ts8bdKrJLHBxSnhdcqOW2PYAckxfJ3otNnifDM+KQYewkEfNdI4mp3WTi6vpmN3ilB/ry+q1DjKnZHdnTxY0TjXj8J6haFE+cenyZmrq+Ofa4INERWzPCIiAIiIAiIgCIiAIiIAiIgCIiA2vhaOX7hLLGPCYXNIzgncZUZOQayZ+A4Bg+oUnwwJX0zomsBjMeXEnmegWPXQdxCwPGJZA5u3L5KqnibL6Wa0dD7PuFq+4cPwVGl8sLo3MbENgMnze66T2fcMx2i8UzS175Y2lztTtR+qiOyq+01HwXRxh7SRFufmCs628atoLnHN93kdJK52uQDIIzssW+26cpQ9ZNvT0UwjGb84N5r7PbbjVSSVpZG8O8+cFv1WVauFbZSROfDK2QDynOVqkV8uN+e+COkp4qR7zrk31n6LEr7hc+GXFjpHy0bj4H5yW/Iry2We2Wd1flIzuLm91E6POoDko/gqWVrqgDm4En8lHTXKquUhcQSw9VBcT32u4djp5qExaJJ2xVDXDJLCcHC9oVuXxPG62Nfz9Gh19a683663Gd2oyVbmcuY/wDQo/ielbLa52CMOmgeMHO+PTCv1EdNb+JrnQUkjnU7KzTH6lp2z9Mq5c483Krp3ygks0iQDmei0lxNYMn963n2c9RX69uiskbpDcHcBWFooyHwEREAREQBERAEREAREQBERAEREBsfCFTJC6R2rOsiMeoCyLkC6mly1zpWOIZ6Ba7bKj7rXQzHOlrwXDPMLd7tTxvhZIwYhmaDt0yq1i2yyXaJboYL/Zk8vimt9RUiIPcTG3VuNt9lv3D9srqq9RWySphpKXSdFTjUc+hC4f3tRQ3Ns1IdD2v8Djz2/Zdj4IvtPxBQhkM/c1cQGociD8vkqupr2vuJcFzR3Jvtvyjq7OFbbb6GQu4gqKqVu5ELRG0D5krXKmzxmV1YZ5pARpaySTU3Hr7ry2W6eaZslddnyNB8hOyucT3ekt9MWulbsMAZVSVu5YijTlHby2/swp6uGkheGta1q5J2o3GoN1t7oHEbFwyMjnsVuFLLUX6rJZqbStO59VqXa/Tmku9C8NJiMWluByIXvpoJTwyjq5uVefRrVpljqHy1NXUgPEhdqcd3OU3VmEVbatz8sLME/i26KAtlNA+QjXlrzluOYP8Aor9+raeGkZSRTiVzCctxyBHqrbhmXBSU9tfJAXQh1wmLeRdt7LGXriXHJOSvFbXCM9vLyERFJAREQBERAEREAREQBERAERS1utbHsZJUE+LfSOgQESpm33aWCkLZJnSPLgGMJ8LR6lZzqOhjOmOlaT6uJKxqiRkY7mmp4nSnmdA8Khx3HcW4vg9u9RTv/hjSXEAnRyLuqr4SnlpL/Aylkewu2cQeaxYqTugZZDqf81P9nVr+9Xl9U9pdoOB79V43YhU2z3pcrLYm7C73ju9MbtTuhXlFaq661IkuUz3Nz5Qtgp7azwv04Wx2mij06iBssFWqPg3+035LFstsdPA2GGMNYBgABc77ZJYHXSmt7dL5IW65D+EkbBdUvFfBZ7PUXGfAbEwloPU9Avn+5VE9wrpqyocXSzPL3E/NX+nwc5ub8IpdQsUIbF7NcqDPbKsTwHwO5ZGQCoyV7pJHSPOXOOSVtU8UT4HRzDUwqJrrNJGwy0zu9Z+H4gtdx5yYrbxgiUXpBBwRgrxQchERAEREAREQBERAEREARFUxrnvDGjJJwAgM6y0jKifXMD3TOfzPoptm5J/EdvkAsaONtDDG1viaRh59SsiY6IwW9RgKTpcGPJK6So7tmcuOMq9HSmN50SbHmCOaUFORIZT0GAs3TjkjCKaS3z3CtgoqdhfLPII2NAzkk4X0/W9jMXCnD1pqqOFxPcD764ZP8U75PoOn0XMPs101E7tOoa65M/utNnxkZDXnkSvu10Uc1Pq8E0b2jHJzSFj9Rm5vtxfgvaV9mSsaPleC0RY0lilLNYZJ36IYXPA5nGw9yu71vDdve6R0NnpQceYsGxXDvtGcZjhC3Hh221EQuFYzxNjGO4Z67dT0WZXprJTUUakuoQ25SON9t96o6m6ts1tn76GjcRUPYfA+T0HqB6rm2RlX3uLySSTk5JPVY00EeC5xc0DckOwvqKalTBRRhW2Stm5SLdQC6RjBy8xV2PbG6tU5Okkh2D5S45OFfiGfEfovQ8yzXUNFVtPeR6X42e3YrX6+01NNl7R3sf4mjl7rZyWjc9FjGrBeWx7/AKJgh4NRRZ98ibHV62tDQ8ZwPVYC5OQiIgCIiAIiIAiIgCk7FCDMZ34w0eDPUqPhjdLK2Ngy5xwFs7aOKKCOEfCNz8/VCUixKHSPDG/EcEfusssL3AdGjAVumjImLidQAwPVZjWqToMbpAGFWRtsMlVuGy6L9nXg/wDth2l2+lqIO9oaV33iqBGQWjkD7lAb32I8Lut9jbVzM/izeJxx6rrVFXV1C0CCunhaPha/b8lv9d2e0sUbhZHRwMO4hePC32Kiq7gu32e2VF64mvDYKKkYZJe72GkfMr5q3R6my5yx9n0Ves0saVFv6waL2hdq9y4b4flqH1g7wgthaGgOe5fInEV2uF/vFRdbnUPqKqd5c97jk+3sti7XOLmcXcVTVVDAaa2Qkx0UPUMz5nfzHmtOGwyThbOi0rohmbzJmPqr4Wy+CwhjS0k8ljSO70h3/L6fzJJIaqTu27QjzH8X+yuYGMAYA5K6VShxABJ2AGSsQVnUg5PkY1LlJpjbEDhzzgq3DTvkbojBjafM7qfqiIZQXSzSEPd/2NPL3KviBwGzw32CvRUkcTQMkj0GwVbg0EBowpINcvZxUiPJJaNyVgLJub+8r5nZ+LH5LGXBAREQBERAEREARFdpYXVFQyFnNxwgJfhul81W9vLZn7lScruZXrGNhibCzZrRgKzUPAYSD0Uo78FdK74ieZWUHjIxyyoyGQBjW55LJimGQPmoBnlwIAX2j9iLhRtu4BquI5mtE91nOgkb92zYf1yvihp7x7YxzcQ389l+mPZbQRWjs+sdDDSiNkVFH5T1Lck/1Rg2vSxoz+q+Nvtd9rLr/dJOCLFUA2ujk/vkrDtPKPh/6W/qu7faa49/sT2X1lRSTGO41x+60vqC4bu+g/Vfn66d0shfI4ucTkuJ3J9VK/pCRWB1Kw5nGoOhuREOZ/Erk0vfeBuzB5iOvyXmQBjkpJPWNDW4AwFTI4NZlUySADZYVXU4Ycc1JDZbDjPXue1uoMGB7qQb35Ayxv1Kx7XFohBPmduVn52QLwWjrxvp+isSvLGuf+EErIccLCuTtNDM7+XZAau9xc9zjzJyvERcHIREQBERAEREAU1wTbpLrxJTUMU0ULpCcPkOGjbqoVbB2e0Udw4so6WVjpGvcRpa4tJ+q4se2LZ6VRUppP8Ap0r/AIXcQTyujoqq31btOcRzLWL7wRxZQSPils87iOseHD819H0FubZqOGghhpYHujb4Y3anbjqSpCKib3HJ2/PPqsZdTti+cM+gl0qma+LaPjPXJFI6GeN8UrDhzHDBB9lejlPMdDld87SOzSn4ic+spmfd69o8MrRs/wCTv9Vw2+cM8RcPVJZcbdO1nIua0uaR6ghaOn1ldy84f8MrU6Kyh5xlf0rop818AcfCZWf+QX6RcFVjY+HaAQ10oApo8AnI8oX5imoLcHJDmnY/ovuPscuV3vPZjarvBNDKBBhwD9wWcwfyVt+Cmnych+2Bx1JxB2hMscVQZKSzs0HB2dK7dx/LC4k6fOGNO55n0Cu8a3N9w4uvFfMfHNWSE7+jiP2USycR+c+N25HopRy3ySjJA0BreS9dJ81HCcHqvTMfVdAyppS0c1jN/izNZ0zkq1LNrx0V6gGGmUnd58OfRGPJLxAYAXshx1AVNNk81cc0HOGhQjpmO6QHqo6/S4oA0bFzv6KRl07fsoPiGUOljib8IyfdGckUiIuSAiIgCIiAIiIAp7gGZ0PFdEWatbn6GlvME7BQKm+B7jS2niejuFYyR8ML9RDBk/JcWLMWj0qeLE/8ne7hxjZuH5qagulxe2fSNby3U4Y6n0C6Dwvf7dX0UVVTV8dRA8bPadv9l8icQ3CW8XqpuEz3OMr8tDjuG9ArthvV3sNR31rrHxAnxRk5Y73CzZdNUocPk111VqbWPifbtNNb5yGyBpA6grR+17iO12Lh2ohpohLW1Z7uDWMhg+J2Fxam7YLlDSBr7eGVA5ujf4HfQ8lEcT8W1XFFRBWVTO7DI9LWZ5epVejpsu6nNcI97+pw7TVb5ZhyshmyZIo3Z9WhT3DfF184ctk1ttNbJT0cuS6Jp2BIwSPRa1ry3LTukUhd4TzW9gwCOntTzUOkbPq1uLvEOpOd1HzW+rhqSHt7wuGQ5vIrYDN3c2iXyu5FKgiN2AfA8Y9ihGDWI3Sd73elxcTgNAycreOGezLjK+vYYra6lhe3UJag6Rj2WBb5hS1TXxhrKiN2pj8DOfVbeO0Piky633IukaMZLRv74Xjf3sfix9ljTqnP5s/RP8P9hogmilu1ZJVSsGuSGNmIyOgzzK6TX8NW2isWl/DtrrKSCPZ0cQ1tA/VaRa+3O40luZT1lnpZqkED7w1xGWjnt64W+U/EPDt64ck4itl7gpX04EtTSTv094BzGPX0WLfDVOSdh9DpXo0mqsff/TnFyt/ZRNZayoiudRRXBjS6KOMZy78JafmuTS1TNWCXNXYO2Idmt54bp+JbBcxFfJXAPpWD/EHXUOhHquOPccY/ZbOkT2ct/Zi9Qa7mEkv9ewJY9yN/mtYrZTNVSSep2Uvc5u5pnAHDn7BQS95GewiIoICIiAIiIAiIgCqY4scHN5hUogM+nmhl2kaGu/VXHMi/Fj6qMV6KcgaXjUP6oSZD20+MFxPsVnwuDYWhmwAWEIgQDjYjIWUx7A0DUApIMyGfHmVx0m+ppWM2Nkj44YXsccanO5fRWwXBhduG6sNyNymQZ8rxURfzBWWyl7DDMNxyKxGzPifnmFefNHOB8LlJJdZqlbgO/jR8v5grzZi8Bw2cOYWCS5rg4Ow5vIq6JmyODxhsnUeqDJkyu7yIt68wVimWcR5Y7LQc6eh9Qqi852VkEsnznwv5qRkvwTGUa2O0uHNpHJV63OyXgDHosUgsn1MOD+qs3OrLIu7afG4b46BBkwblP39ScHwt2CxURcEBERAEREAREQBERAEREAREQF3v5sg94dhgIZ5iMF5xz5IiApbLI3k8j2VwVdQBjvT9URAeGqnPOQ/kFT38v4yiICr71UY/xSvDUzk57woiAq++VP8Amn8ghq6g85T+QREA++VP+afyCtPe57i55JJ6oiApREQBERAEREAREQH/2Q==" alt="Carla Bee — CMB Enterprise Group LLC">
+          </div>
+          <div class="about-badge">
+            <span class="about-badge-num">KC</span>
+            <span class="about-badge-label">Native &amp; Proud</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="about-eyebrow">About Me</div>
+        <h2 class="about-name">Carla <em>Bee</em></h2>
+        <p class="about-role">Founder, CMB Enterprise Group LLC &middot; Digital Solutions &amp; Insurance Professional</p>
+        <div class="about-kc">&#128205;&nbsp; Kansas City, MO</div>
+        <div class="about-divider"></div>
+        <p class="about-bio">Born and raised in Kansas City, Carla Bee is the founder of CMB Enterprise Group LLC &mdash; a multi-service firm built on the belief that every small business deserves a professional online presence and a solid financial foundation. With a background spanning web design, digital consulting, and insurance solutions, Carla brings a rare combination of creativity and strategy to every client she serves.</p>
+        <p class="about-bio">Whether she&rsquo;s building a brand-new website for a local pop-up vendor or helping a family protect what matters most, Carla shows up with the same dedication: real solutions, personal service, and results you can see.</p>
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-icon">&#127760;</div>
+            <div>
+              <div class="about-card-title">Web Design &amp; Digital Services</div>
+              <div class="about-card-desc">Custom, mobile-ready websites built to attract clients and grow your brand &mdash; no templates, no shortcuts.</div>
+            </div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">&#128196;</div>
+            <div>
+              <div class="about-card-title">Insurance Solutions</div>
+              <div class="about-card-desc">Personalized coverage options including health, accident, and supplemental plans &mdash; protecting what matters most.</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-cta">
+          <a href="intake-form.html" class="btn-primary" style="font-size:14px;padding:13px 28px;">Work With Me &rarr;</a>
+          <a href="mailto:info@carlabee.com" class="about-link">info@carlabee.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="testimonial">
     <div style="font-size:48px;margin-bottom:16px;opacity:0.3;">&ldquo;</div>
     <p class="testimonial-quote" style="font-size:clamp(18px,2.5vw,26px);max-width:700px;margin:0 auto 16px;">Carla built us a site that looked better than businesses 10x our size. She understood exactly what we needed and delivered it fast. Our clients comment on it every week.</p>
@@ -416,6 +505,7 @@ footer { background: var(--brand-dark); color: white; padding: 56px 40px 40px; }
       <div>
         <div class="footer-links">
           <a onclick="dScrollTo('d-home')">Home</a>
+          <a onclick="dScrollTo('d-about')">About</a>
           <a onclick="dScrollTo('d-services')">Services</a>
           <a onclick="dScrollTo('d-portfolio')">Portfolio</a>
           <a onclick="dScrollTo('d-contact')">Contact</a>
@@ -478,6 +568,28 @@ footer { background: var(--brand-dark); color: white; padding: 56px 40px 40px; }
           <div class="step"><div class="step-num">4</div><div><div class="step-title">Go Live</div><div class="step-desc">Your site launches on your domain. We handle setup and hosting guidance.</div></div></div>
         </div>
       </section>
+      <!-- ABOUT - MOBILE -->
+      <section class="about-section-mobile">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADIAMgDASIAAhEBAxEB/8QAHQABAAEFAQEBAAAAAAAAAAAAAAUCAwQGBwEICf/EAD4QAAEDAwIDBgMGAwYHAAAAAAEAAgMEBRESIQYxQQcTIjJRcUJhgQgUUpGxwSNioRYkM1PR4RdDcoKy8PH/xAAaAQEAAwEBAQAAAAAAAAAAAAAAAQQFAgMG/8QAJxEAAgIBAwQCAwADAAAAAAAAAAECAxEEEiEFEzFBIoEjMlFhceH/2gAMAwEAAhEDEQA/APjJERAEREAREQBERAEREARXqSmnq52w08bpJHcgAtqtvClFDB3t7rjE4+WKEaifcridkYeT1rpnZ+qNPRbvV2rh+BxiZTySP5jD+nz9Fh1dpsk8jY6aWWne/ZufEMrlXJ+jt6eS9o1RFJ3Ozy0RIErZccwBg/ko0gg4IwvRNPweEouLwzxERSQEREAREQBERAEREAREQBERAEREAREQBZtnttRc6wU8DeQ1PceTR1KwhucBb5w7HHRWyKEDEsvikyOZPlHsvK2eyPB70VdyWH4JW2QW2zWzVT0+C7zSvOX/APxR09zFRNJhjpTGNXgZgF3QKqtjqa+4stdO9z2h3jI+Jx6LsfB3Z3bKaCkneXmdh1yHOzz6H5LNsuhVzLls14Uzs+MOEjiVLZ7kw97WwytikaXksb4vZe01G6tk02/vY5Wc43+Yj5L6buPDtJNT4fEwjpstNvnDUdOXVFIxkUo+INXVet3eVg4s6e4cp5ORGwT00IfW1Ebe8yWslPj39FrV7sz2xOqosZZ/iNJ3PzHquiXm1PkmkjrbjG2RrC6JvIE+61LiKOooa+lhbVtqaN/iAb8LuqtQm3yinOC/Vrg0hFMcRUEdO9tTTt0xSdP39lDq1GSksopTg4PDCIik5CIiAIiIAiIgCIiAIiIAiIgCIiAleF6QVd1ia9mtrXZIW1XOtZBUNiiwZC1z8kYwBsAobgyM6KiRpy4jYAbgDmV7Xyxy3USSEuDYsnJ5KrNbrOfRoU/CrK8s3XsxgkmurKh47xwaCTjqu/2XUI25GwXGOyyoqIbG6ro46Nhkds+od0HQBdH4f4gdVyiB+jvxzEfI+yxdUpOxy9G1pZx2KJvhp3SDXqGkDfJUHe6XXC4xOY8jmA4FatxZddNwZTzCpleThlPG4jJUHT8Zirq4aSis9Q1gdoL9JwHL0hVKUcoid8Yy2so4ls9NNFJLPTCXRvpPPK5RdrNXVFYZLZbKmWPUXaA7LWEdQu+XqEut8b5WBr5BhwUPwxTRMEtLNTSTRSFzHd2PKOhK9atQ64ts8bdKrJLHBxSnhdcqOW2PYAckxfJ3otNnifDM+KQYewkEfNdI4mp3WTi6vpmN3ilB/ry+q1DjKnZHdnTxY0TjXj8J6haFE+cenyZmrq+Ofa4INERWzPCIiAIiIAiIgCIiAIiIAiIgCIiA2vhaOX7hLLGPCYXNIzgncZUZOQayZ+A4Bg+oUnwwJX0zomsBjMeXEnmegWPXQdxCwPGJZA5u3L5KqnibL6Wa0dD7PuFq+4cPwVGl8sLo3MbENgMnze66T2fcMx2i8UzS175Y2lztTtR+qiOyq+01HwXRxh7SRFufmCs628atoLnHN93kdJK52uQDIIzssW+26cpQ9ZNvT0UwjGb84N5r7PbbjVSSVpZG8O8+cFv1WVauFbZSROfDK2QDynOVqkV8uN+e+COkp4qR7zrk31n6LEr7hc+GXFjpHy0bj4H5yW/Iry2We2Wd1flIzuLm91E6POoDko/gqWVrqgDm4En8lHTXKquUhcQSw9VBcT32u4djp5qExaJJ2xVDXDJLCcHC9oVuXxPG62Nfz9Gh19a683663Gd2oyVbmcuY/wDQo/ielbLa52CMOmgeMHO+PTCv1EdNb+JrnQUkjnU7KzTH6lp2z9Mq5c483Krp3ygks0iQDmei0lxNYMn963n2c9RX69uiskbpDcHcBWFooyHwEREAREQBERAEREAREQBERAEREBsfCFTJC6R2rOsiMeoCyLkC6mly1zpWOIZ6Ba7bKj7rXQzHOlrwXDPMLd7tTxvhZIwYhmaDt0yq1i2yyXaJboYL/Zk8vimt9RUiIPcTG3VuNt9lv3D9srqq9RWySphpKXSdFTjUc+hC4f3tRQ3Ns1IdD2v8Djz2/Zdj4IvtPxBQhkM/c1cQGociD8vkqupr2vuJcFzR3Jvtvyjq7OFbbb6GQu4gqKqVu5ELRG0D5krXKmzxmV1YZ5pARpaySTU3Hr7ry2W6eaZslddnyNB8hOyucT3ekt9MWulbsMAZVSVu5YijTlHby2/swp6uGkheGta1q5J2o3GoN1t7oHEbFwyMjnsVuFLLUX6rJZqbStO59VqXa/Tmku9C8NJiMWluByIXvpoJTwyjq5uVefRrVpljqHy1NXUgPEhdqcd3OU3VmEVbatz8sLME/i26KAtlNA+QjXlrzluOYP8Aor9+raeGkZSRTiVzCctxyBHqrbhmXBSU9tfJAXQh1wmLeRdt7LGXriXHJOSvFbXCM9vLyERFJAREQBERAEREAREQBERAERS1utbHsZJUE+LfSOgQESpm33aWCkLZJnSPLgGMJ8LR6lZzqOhjOmOlaT6uJKxqiRkY7mmp4nSnmdA8Khx3HcW4vg9u9RTv/hjSXEAnRyLuqr4SnlpL/Aylkewu2cQeaxYqTugZZDqf81P9nVr+9Xl9U9pdoOB79V43YhU2z3pcrLYm7C73ju9MbtTuhXlFaq661IkuUz3Nz5Qtgp7azwv04Wx2mij06iBssFWqPg3+035LFstsdPA2GGMNYBgABc77ZJYHXSmt7dL5IW65D+EkbBdUvFfBZ7PUXGfAbEwloPU9Avn+5VE9wrpqyocXSzPL3E/NX+nwc5ub8IpdQsUIbF7NcqDPbKsTwHwO5ZGQCoyV7pJHSPOXOOSVtU8UT4HRzDUwqJrrNJGwy0zu9Z+H4gtdx5yYrbxgiUXpBBwRgrxQchERAEREAREQBERAEREARFUxrnvDGjJJwAgM6y0jKifXMD3TOfzPoptm5J/EdvkAsaONtDDG1viaRh59SsiY6IwW9RgKTpcGPJK6So7tmcuOMq9HSmN50SbHmCOaUFORIZT0GAs3TjkjCKaS3z3CtgoqdhfLPII2NAzkk4X0/W9jMXCnD1pqqOFxPcD764ZP8U75PoOn0XMPs101E7tOoa65M/utNnxkZDXnkSvu10Uc1Pq8E0b2jHJzSFj9Rm5vtxfgvaV9mSsaPleC0RY0lilLNYZJ36IYXPA5nGw9yu71vDdve6R0NnpQceYsGxXDvtGcZjhC3Hh221EQuFYzxNjGO4Z67dT0WZXprJTUUakuoQ25SON9t96o6m6ts1tn76GjcRUPYfA+T0HqB6rm2RlX3uLySSTk5JPVY00EeC5xc0DckOwvqKalTBRRhW2Stm5SLdQC6RjBy8xV2PbG6tU5Okkh2D5S45OFfiGfEfovQ8yzXUNFVtPeR6X42e3YrX6+01NNl7R3sf4mjl7rZyWjc9FjGrBeWx7/AKJgh4NRRZ98ibHV62tDQ8ZwPVYC5OQiIgCIiAIiIAiIgCk7FCDMZ34w0eDPUqPhjdLK2Ngy5xwFs7aOKKCOEfCNz8/VCUixKHSPDG/EcEfusssL3AdGjAVumjImLidQAwPVZjWqToMbpAGFWRtsMlVuGy6L9nXg/wDth2l2+lqIO9oaV33iqBGQWjkD7lAb32I8Lut9jbVzM/izeJxx6rrVFXV1C0CCunhaPha/b8lv9d2e0sUbhZHRwMO4hePC32Kiq7gu32e2VF64mvDYKKkYZJe72GkfMr5q3R6my5yx9n0Ves0saVFv6waL2hdq9y4b4flqH1g7wgthaGgOe5fInEV2uF/vFRdbnUPqKqd5c97jk+3sti7XOLmcXcVTVVDAaa2Qkx0UPUMz5nfzHmtOGwyThbOi0rohmbzJmPqr4Wy+CwhjS0k8ljSO70h3/L6fzJJIaqTu27QjzH8X+yuYGMAYA5K6VShxABJ2AGSsQVnUg5PkY1LlJpjbEDhzzgq3DTvkbojBjafM7qfqiIZQXSzSEPd/2NPL3KviBwGzw32CvRUkcTQMkj0GwVbg0EBowpINcvZxUiPJJaNyVgLJub+8r5nZ+LH5LGXBAREQBERAEREARFdpYXVFQyFnNxwgJfhul81W9vLZn7lScruZXrGNhibCzZrRgKzUPAYSD0Uo78FdK74ieZWUHjIxyyoyGQBjW55LJimGQPmoBnlwIAX2j9iLhRtu4BquI5mtE91nOgkb92zYf1yvihp7x7YxzcQ389l+mPZbQRWjs+sdDDSiNkVFH5T1Lck/1Rg2vSxoz+q+Nvtd9rLr/dJOCLFUA2ujk/vkrDtPKPh/6W/qu7faa49/sT2X1lRSTGO41x+60vqC4bu+g/Vfn66d0shfI4ucTkuJ3J9VK/pCRWB1Kw5nGoOhuREOZ/Erk0vfeBuzB5iOvyXmQBjkpJPWNDW4AwFTI4NZlUySADZYVXU4Ycc1JDZbDjPXue1uoMGB7qQb35Ayxv1Kx7XFohBPmduVn52QLwWjrxvp+isSvLGuf+EErIccLCuTtNDM7+XZAau9xc9zjzJyvERcHIREQBERAEREAU1wTbpLrxJTUMU0ULpCcPkOGjbqoVbB2e0Udw4so6WVjpGvcRpa4tJ+q4se2LZ6VRUppP8Ap0r/AIXcQTyujoqq31btOcRzLWL7wRxZQSPils87iOseHD819H0FubZqOGghhpYHujb4Y3anbjqSpCKib3HJ2/PPqsZdTti+cM+gl0qma+LaPjPXJFI6GeN8UrDhzHDBB9lejlPMdDld87SOzSn4ic+spmfd69o8MrRs/wCTv9Vw2+cM8RcPVJZcbdO1nIua0uaR6ghaOn1ldy84f8MrU6Kyh5xlf0rop818AcfCZWf+QX6RcFVjY+HaAQ10oApo8AnI8oX5imoLcHJDmnY/ovuPscuV3vPZjarvBNDKBBhwD9wWcwfyVt+Cmnych+2Bx1JxB2hMscVQZKSzs0HB2dK7dx/LC4k6fOGNO55n0Cu8a3N9w4uvFfMfHNWSE7+jiP2USycR+c+N25HopRy3ySjJA0BreS9dJ81HCcHqvTMfVdAyppS0c1jN/izNZ0zkq1LNrx0V6gGGmUnd58OfRGPJLxAYAXshx1AVNNk81cc0HOGhQjpmO6QHqo6/S4oA0bFzv6KRl07fsoPiGUOljib8IyfdGckUiIuSAiIgCIiAIiIAp7gGZ0PFdEWatbn6GlvME7BQKm+B7jS2niejuFYyR8ML9RDBk/JcWLMWj0qeLE/8ne7hxjZuH5qagulxe2fSNby3U4Y6n0C6Dwvf7dX0UVVTV8dRA8bPadv9l8icQ3CW8XqpuEz3OMr8tDjuG9ArthvV3sNR31rrHxAnxRk5Y73CzZdNUocPk111VqbWPifbtNNb5yGyBpA6grR+17iO12Lh2ohpohLW1Z7uDWMhg+J2Fxam7YLlDSBr7eGVA5ujf4HfQ8lEcT8W1XFFRBWVTO7DI9LWZ5epVejpsu6nNcI97+pw7TVb5ZhyshmyZIo3Z9WhT3DfF184ctk1ttNbJT0cuS6Jp2BIwSPRa1ry3LTukUhd4TzW9gwCOntTzUOkbPq1uLvEOpOd1HzW+rhqSHt7wuGQ5vIrYDN3c2iXyu5FKgiN2AfA8Y9ihGDWI3Sd73elxcTgNAycreOGezLjK+vYYra6lhe3UJag6Rj2WBb5hS1TXxhrKiN2pj8DOfVbeO0Piky633IukaMZLRv74Xjf3sfix9ljTqnP5s/RP8P9hogmilu1ZJVSsGuSGNmIyOgzzK6TX8NW2isWl/DtrrKSCPZ0cQ1tA/VaRa+3O40luZT1lnpZqkED7w1xGWjnt64W+U/EPDt64ck4itl7gpX04EtTSTv094BzGPX0WLfDVOSdh9DpXo0mqsff/TnFyt/ZRNZayoiudRRXBjS6KOMZy78JafmuTS1TNWCXNXYO2Idmt54bp+JbBcxFfJXAPpWD/EHXUOhHquOPccY/ZbOkT2ct/Zi9Qa7mEkv9ewJY9yN/mtYrZTNVSSep2Uvc5u5pnAHDn7BQS95GewiIoICIiAIiIAiIgCqY4scHN5hUogM+nmhl2kaGu/VXHMi/Fj6qMV6KcgaXjUP6oSZD20+MFxPsVnwuDYWhmwAWEIgQDjYjIWUx7A0DUApIMyGfHmVx0m+ppWM2Nkj44YXsccanO5fRWwXBhduG6sNyNymQZ8rxURfzBWWyl7DDMNxyKxGzPifnmFefNHOB8LlJJdZqlbgO/jR8v5grzZi8Bw2cOYWCS5rg4Ow5vIq6JmyODxhsnUeqDJkyu7yIt68wVimWcR5Y7LQc6eh9Qqi852VkEsnznwv5qRkvwTGUa2O0uHNpHJV63OyXgDHosUgsn1MOD+qs3OrLIu7afG4b46BBkwblP39ScHwt2CxURcEBERAEREAREQBERAEREAREQF3v5sg94dhgIZ5iMF5xz5IiApbLI3k8j2VwVdQBjvT9URAeGqnPOQ/kFT38v4yiICr71UY/xSvDUzk57woiAq++VP8Amn8ghq6g85T+QREA++VP+afyCtPe57i55JJ6oiApREQBERAEREAREQH/2Q==" alt="Carla Bee" class="about-mobile-photo">
+        <h2 class="about-mobile-name">Carla <em>Bee</em></h2>
+        <p class="about-mobile-role">Founder &middot; CMB Enterprise Group LLC</p>
+        <div class="about-mobile-kc"><span class="about-kc">&#128205;&nbsp; Kansas City, MO</span></div>
+        <p class="about-mobile-bio">Born and raised in Kansas City, Carla Bee founded CMB Enterprise Group LLC to help small businesses look professional online and protect what matters most. She offers custom web design and insurance solutions &mdash; real service, real results.</p>
+        <div class="about-mobile-cards">
+          <div class="about-card">
+            <div class="about-card-icon">&#127760;</div>
+            <div><div class="about-card-title">Web Design &amp; Digital Services</div><div class="about-card-desc">Custom websites built to grow your brand.</div></div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">&#128196;</div>
+            <div><div class="about-card-title">Insurance Solutions</div><div class="about-card-desc">Coverage that protects what matters most.</div></div>
+          </div>
+        </div>
+        <div style="text-align:center;">
+          <a href="intake-form.html" class="btn-primary" style="font-size:14px;padding:13px 28px;">Work With Me &rarr;</a>
+        </div>
+      </section>
+
       <div class="testimonial" style="padding:36px 24px;">
         <div style="font-size:28px;margin-bottom:12px;opacity:0.4;">&ldquo;</div>
         <p class="testimonial-quote" style="font-size:17px;">Carla built us a site that looked better than businesses 10x our size. Fast delivery, exactly what we needed.</p>
